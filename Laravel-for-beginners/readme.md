@@ -4,23 +4,23 @@
 
 - [Sec. 1. Table of Content](#1.)
 - [Sec. 2. Introduction](#2.)
-- [Sec. 3.1. Setup  - The development tools](#3.)
-- [Sec. 3.2. Setup - The Laravel powered app](#4.)
-- [Sec. 4.1. Components - database ](#5.)
-- [Sec. 4.2. Component - routes](#6.)
-- [Sec. 4.3.1. Queries - Introduction](#7.)
-- [Sec. 4.3.2. Queries - Basic ones](#8.)
-- [Sec. 4.3.3. Queries  - Ones with basic relationships](#9.)
-- [Sec. 4.3.4. Queries - Ones with advanced relationships](#10.)
-- [Sec. 4.3.5. Queries - Thier testing environment](#11.)
-- [Sec. 4.3.6. Queries - Accessors and mutator one](#12.)
-- [Sec. 4.2. Component - views](#13.)
+- [Sec. 3.1. Setup  - The development tools](#3.1.)
+- [Sec. 3.2. Setup - The Laravel powered app](#3.2.)
+- [Sec. 4.1. Components - database ](#4.1.)
+- [Sec. 4.2. Component - routes](#4.2.)
+- [Sec. 4.3.1. Queries - Introduction](#4.3.1.)
+- [Sec. 4.3.2. Queries - Basic ones](#4.3.2.)
+- [Sec. 4.3.3. Queries  - Ones with basic relationships](#4.3.3.)
+- [Sec. 4.3.4. Queries - Ones with advanced relationships](#4.3.4.)
+- [Sec. 4.3.5. Queries - Thier testing environment](#4.3.5.)
+- [Sec. 4.3.6. Queries - Accessors and mutator one](#4.3.6.)
+- [Sec. 4.4. Component - views](#4.4.)
 - [Sec. 5. Real-World Examples](#14.)
   - [8.1. /5.1. Intro](#8.1)
   - [8.2. /5.2. Forms](#8.2)
   - [8.3. /5.3. Coming soon](##)
   - [8.4. /5.4. Coming soon](##)
-  
+
 
 ## <a name="2."></a>Chapter 2. Introduction
 
@@ -328,10 +328,10 @@
 - Configurations
   - Make new connection called `local` to your DB server using your database user details
 - Operations
-  - To open MYSQL WorkBench launch it from its launch icon. 
+  - To open MYSQL WorkBench launch it from its launch icon.
 
 
-### <a name="4."></a>Chapter 3.2 Laravel Powered App
+### <a name="3.2."></a>Chapter 3.2 Laravel Powered App
 #### Table Of Content
 
 
@@ -484,7 +484,7 @@
 
 
 
-## <a name="5."></a>Chapter 4. Database component 
+## <a name="4.1"></a>Chapter 4. Database component
 
 ### Table Of Content
 - [Database](#Database)
@@ -603,9 +603,9 @@
   include(blabla): failed to open stream: No such file or directory
   ```
   then solve it by running this in git bash `composer dump-autoload`
-  
 
-## <a name="6."></a> Chapter 5. Route component
+
+## <a name="4.2."></a> Chapter 5. Route component
 
 ### Table Of Content
 - [Routes](#routes)
@@ -689,7 +689,7 @@
 ```
 
 
-## <a name="7."></a>Chapter 4.3.1. Introduction
+## <a name="4.3.1."></a>Chapter 4.3.1. Introduction
 
 ### Table Of Content
 
@@ -952,7 +952,7 @@
       });
     ```
 
-## <a name="8."></a> Chapter 4.3.2. Basic Queries
+## <a name="4.3.2."></a> Chapter 4.3.2. Basic Queries
 
 ### Table Of Content
 
@@ -1216,7 +1216,7 @@
   ```
 
 
-## <a name="9."></a> Chapter 4.3.3. Basic Relationships
+## <a name="4.3.3."></a> Chapter 4.3.3. Basic Relationships
 
 ### Table Of Content
 
@@ -1594,7 +1594,7 @@
 
 
 
-## <a name="10."></a>Chapter 4.3.4. Advanced Relationships
+## <a name="4.3.4."></a>Chapter 4.3.4. Advanced Relationships
 
 ### Table Of Content
 - [Relationship with 2 Levels of Separation](#Relationship-with-2-Levels-of-Separation)
@@ -2028,7 +2028,7 @@
 
 
 
-## <a name="11."></a>Chapter 4.3.5. Query Testing Environment
+## <a name="4.3.5."></a>Chapter 4.3.5. Query Testing Environment
 
 ### Table Of Content
 - [Query Testing Environment](#Query-Testing-Environment)
@@ -2084,11 +2084,11 @@
     - Run `$example_variable = App\ExampleModel::find(1);`
     - Run `$example_variable->ExampleGreatGrandChildModels`
   - Create, update, delete just like u do in the `Query Testing Environment- Basic ORM Queries` section
-  
-  
-  
 
-## <a name="12."></a>Chapter 4.3.6. Accessors and Mutators
+
+
+
+## <a name="4.3.6."></a>Chapter 4.3.6. Accessors and Mutators
 
 ### Table Of Content
 - [Dates](#Dates)
@@ -2195,7 +2195,7 @@
 
 
 
-## <a name="13."></a>Chapter 4.4. Views component
+## <a name="4.4."></a>Chapter 4.4. Views component
 
 ### Table Of Content
 - [Views](#)
