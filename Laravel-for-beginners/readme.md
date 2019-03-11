@@ -35,10 +35,10 @@
 - This course is based on a video course on Udemy.com which can be found here - [Laravel for beginners](https://www.udemy.com/php-with-laravel-for-beginners-become-a-master-in-laravel/)
 
 
-##<a name="3.d"></a>3. Settup
 
-### <a name="3.1."></a>Sec. 3.1. Setup  - The development tools
-#### Table Of Content
+
+## <a name="3.1."></a>Sec. 3.1. Setup  - The development tools
+### Table Of Content
 
 - [For Windows](#For_Windows)
   - [Virtual Local Server (VLS)](#Virtual_Local_Server)
@@ -52,427 +52,454 @@
   - [Database Manager](#Database_Manager_2)
 
 
-#### <a name="For_Windows"></a>For Windows
-##### <a name="Virtual_Local_Server"></a>Virtual Local Server (VLS)
+### <a name="For_Windows"></a>For Windows
+#### <a name="Virtual_Local_Server"></a>Virtual Local Server (VLS)
 
-- This VLS system comprises of 5 parts.
-  - VLS Terminal
-  - VLS Engine
-  - VLS Content Location
-  - VLS Configuration Manager
-  - VLS Configuration Package
-  - VLS Environment
+##### This VLS system comprises of 5 parts.
 - VLS Terminal
-	- Intro
-		- Purpose: An interface to the virtual server
-		- Name: Git Bash
-	- Installation
-		- [Git Bash](https://git-scm.com/download/win).
 - VLS Engine
-	- Intro
-		- Purpose: Used to run the virtual server
-		- Name: VirtualBox
-	- Installation
-		- [Virtual Box](https://www.virtualbox.org/wiki/Downloads) (then click "windows hosts").
-		- Then edit your environment variables:
-		  - Orientate yourself to `Control Panel\System and Security\System`
-		  - Click `Advanced System Settings` and `Environment Variables`
-		  - Click `User variables for Person > Path`
-		  - Edit `Variable value`
-		    - Add this to the beginning `C:\Program Files\Oracle\VirtualBox;`
 - VLS Content Location
-	- Make this folder: `c:/laravel-apps`
 - VLS Configuration Manager
-	- Intro
-		- Purpose: Used to help configure our virtual server
-		- Name: Vagrant
-	- Installation
-		- [Vagrant](https://www.vagrantup.com/downloads.html).
-- VLS Configuration Package (Known as a "Box")
-	- Intro
-		- Purpose: Used to configure our virtual server so that it can facilitate the specified framework.
-		- Name: Laravel Homestead
-	- Installation
-		- For Very Fast Connections:
-		  - The file is about a gig.
-		  - Open a new instance of Git Bash and run this `vargant box add laravel/homestead`.
-		  - When prompted enter `2` for virtualbox installation type.
-		- For Normal Connections:
-		  - Installer Downloading
-		    - The file is about a gig.
-		    - Go to https://app.vagrantup.com/boxes/search
-		    - Search for `Laravel` and choose Homestead by Laravel
-		    - Either click the latest version or a version you want (only version 6 and above is able to have it's PHP version switched, which will be necessary).
-		    - Then prepend the URL link with this `/providers/virtualbox.box`
-		  - Installation
-		    - Rename the downloaded file to `virtualbox.box`.
-		    - Use Git Bash to install it
-		      - By running this command `vagrant box add laravel/homestead file:///C:/Users/Ivan/Downloads/virtualbox.box`.
-		    - Download  [metadata_url](https://abbasharoon.me/metadata_url) (right click this link and say "save link as"), remove its file extension and move it to your newly formed folder           
-		    `%USERPROFILE%\.vagrant.d\boxes\laravel-VAGRANTSLASH-homestead`.
-		    - In this same location rename the directory named “0” to the same number as the version of the box that that you installed
-		      - E.g. ```6.1.0```.
-	- Uninstallation
-		- `vagrant box remove laravel/homestead --box-version=6.2.0`
-		- Configure the box number version to your case
+- VLS Configuration Package
 - VLS Environment
-	- Installation
-		- Part 1 (ssh keys)
-			- Open a new instance of Git Bash, locate yourself with `cd .ssh/` and the run `ssh-keygen -t rsa -b 4096 -C "your@email.com"` replace the email here with your email.
-			- When prompted for more detail just click enter each time (without entering any details) until it says that the keys have been "saved".
-		- Part 2 (Homestead folder)
-			- Open Git Bash, locate yourself with this command `cd c:`
-			- Run this command `git clone https://github.com/laravel/homestead.git Homestead`.
-			- From windows explorer run this file `C:\Homestead\init.bat`.
-			- Homestead.yaml
-			  - In this file `C:\Homestead\Homestead.yaml` configure this attributes
-			     - folders:
-				- \- map: `C:\laravel-apps`
-		- Part 3 (homestead-7 folder)
-		  - Orientate yourself to `cd c:/Homestead` and then run the command `vagrant up`
-		    - Note if you are not using the latest version of Homestead you might need to clarify that
-			- In the `homestead.rb` file
-				- Location: - `C:\Homestead\scripts`
-				- Edit: Change the version number in this line `config.vm.box_version = settings['version'] ||= '>= 6.3.0'`
-			- And in the `homestead.yaml` file in the folder `C:\Homestead`
-		  - If this doesn't work the first time restart Git Bash and try again.
-		  - When the first launch has complete run the command `vagrant halt`
-	- Uninstallation (if ever you need to)
-		- Part 1 (homestead-7 folder)
-			- Get environment ID by running `vagrant global-status` and checking the ID code of the specific environment
-			- Run `vagrant destroy 1a1a1a1a` (replace `1a1a1a1a` with the environment ID)
-		- Part 2 (Homestead folder)
-			- Delete the `Homestead` folder inside `C:`
-		- Part 3 (ssh keys)
-			- Go to `%USERPROFILE%\.ssh`
-			- Manually delete it's contents
-	- Operation
-		- Please note: In later sections of this course you will be editing source code for that you will need to make sure Laravel Homestead is open and to save computer resources close it when your not working.
-		- Open - using Git Bash locate yourself with `cd c:/Homestead` and then run the command `vagrant up` (executing this may take a while).
-		- Close - using Git Bash locate yourself with `cd c:/Homestead` and then run the command `vagrant halt`
-		- Check status
-		  - This just tells you if the virtual machine is running or not.
-		  - Using Git Bash locate yourself with `cd c:/Homestead` and then run `vagrant global-status`.
-		- Provision
-		  - Orientate yourself to `cd c:/Homestead` then `vagrant up` then `vagrant provision` then if you want `vagrant halt`
-		- Troubleshoot
-		  - If at some point you get the message `No input file selected` either
-		    - Restart homestead
-		    - Provision homestead
-##### <a name="Package_Installation_Manager"></a>Package Installation Manager </summary>
+
+##### VLS Terminal
+- Intro
+	- Purpose: An interface to the virtual server
+	- Name: Git Bash
+- Installation
+	- [Git Bash](https://git-scm.com/download/win).
+
+##### VLS Engine
+- Intro
+	- Purpose: Used to run the virtual server
+	- Name: VirtualBox
+- Installation
+	- [Virtual Box](https://www.virtualbox.org/wiki/Downloads) (then click "windows hosts").
+	- Then edit your environment variables:
+	  - Orientate yourself to `Control Panel\System and Security\System`
+	  - Click `Advanced System Settings` and `Environment Variables`
+	  - Click `User variables for Person > Path`
+	  - Edit `Variable value`
+	    - Add this to the beginning `C:\Program Files\Oracle\VirtualBox;`
+
+##### VLS Content Location
+- Make this folder: `c:/laravel-apps`
+
+##### VLS Configuration Manager
+- Intro
+	- Purpose: Used to help configure our virtual server
+	- Name: Vagrant
+- Installation
+	- [Vagrant](https://www.vagrantup.com/downloads.html).
+
+##### VLS Configuration Package (Known as a "Box")
+- Intro
+	- Purpose: Used to configure our virtual server so that it can facilitate the specified framework.
+	- Name: Laravel Homestead
+- Installation
+	- For Very Fast Connections:
+	  - The file is about a gig.
+	  - Open a new instance of Git Bash and run this `vargant box add laravel/homestead`.
+	  - When prompted enter `2` for virtualbox installation type.
+	- For Normal Connections:
+	  - Installer Downloading
+	    - The file is about a gig.
+	    - Go to https://app.vagrantup.com/boxes/search
+	    - Search for `Laravel` and choose Homestead by Laravel
+	    - Either click the latest version or a version you want (only version 6 and above is able to have it's PHP version switched, which will be necessary).
+	    - Then prepend the URL link with this `/providers/virtualbox.box`
+	  - Installation
+	    - Rename the downloaded file to `virtualbox.box`.
+	    - Use Git Bash to install it
+	      - By running this command `vagrant box add laravel/homestead file:///C:/Users/Ivan/Downloads/virtualbox.box`.
+	    - Download  [metadata_url](https://abbasharoon.me/metadata_url) (right click this link and say "save link as"), remove its file extension and move it to your newly formed folder           
+	    `%USERPROFILE%\.vagrant.d\boxes\laravel-VAGRANTSLASH-homestead`.
+	    - In this same location rename the directory named “0” to the same number as the version of the box that that you installed
+	      - E.g. ```6.1.0```.
+- Uninstallation
+	- `vagrant box remove laravel/homestead --box-version=6.2.0`
+	- Configure the box number version to your case
+
+##### VLS Environment
+- Installation
+	- Part 1 (ssh keys)
+		- Open a new instance of Git Bash, locate yourself with `cd .ssh/` and the run `ssh-keygen -t rsa -b 4096 -C "your@email.com"` replace the email here with your email.
+		- When prompted for more detail just click enter each time (without entering any details) until it says that the keys have been "saved".
+	- Part 2 (Homestead folder)
+		- Open Git Bash, locate yourself with this command `cd c:`
+		- Run this command `git clone https://github.com/laravel/homestead.git Homestead`.
+		- From windows explorer run this file `C:\Homestead\init.bat`.
+		- Homestead.yaml
+		  - In this file `C:\Homestead\Homestead.yaml` configure this attributes
+		     - folders:
+			- \- map: `C:\laravel-apps`
+	- Part 3 (homestead-7 folder)
+	  - Orientate yourself to `cd c:/Homestead` and then run the command `vagrant up`
+	    - Note if you are not using the latest version of Homestead you might need to clarify that
+		- In the `homestead.rb` file
+			- Location: - `C:\Homestead\scripts`
+			- Edit: Change the version number in this line `config.vm.box_version = settings['version'] ||= '>= 6.3.0'`
+		- And in the `homestead.yaml` file in the folder `C:\Homestead`
+	  - If this doesn't work the first time restart Git Bash and try again.
+	  - When the first launch has complete run the command `vagrant halt`
+- Uninstallation (if ever you need to)
+	- Part 1 (homestead-7 folder)
+		- Get environment ID by running `vagrant global-status` and checking the ID code of the specific environment
+		- Run `vagrant destroy 1a1a1a1a` (replace `1a1a1a1a` with the environment ID)
+	- Part 2 (Homestead folder)
+		- Delete the `Homestead` folder inside `C:`
+	- Part 3 (ssh keys)
+		- Go to `%USERPROFILE%\.ssh`
+		- Manually delete it's contents
+- Operation
+	- Please note: In later sections of this course you will be editing source code for that you will need to make sure Laravel Homestead is open and to save computer resources close it when your not working.
+	- Open - using Git Bash locate yourself with `cd c:/Homestead` and then run the command `vagrant up` (executing this may take a while).
+	- Close - using Git Bash locate yourself with `cd c:/Homestead` and then run the command `vagrant halt`
+	- Check status
+	  - This just tells you if the virtual machine is running or not.
+	  - Using Git Bash locate yourself with `cd c:/Homestead` and then run `vagrant global-status`.
+	- Provision
+	  - Orientate yourself to `cd c:/Homestead` then `vagrant up` then `vagrant provision` then if you want `vagrant halt`
+	- Troubleshoot
+	  - If at some point you get the message `No input file selected` either
+	    - Restart homestead
+	    - Provision homestead
+
+#### <a name="Package_Installation_Manager"></a>Package Installation Manager </summary>
 - We will be using Composer
 
-- Installation
-	- Installation: [Composer](https://getcomposer.org/download/)
-- Operation
-	- Composer functions are used through a command line interface.
-- Extensions
-	- Laravel Installer
-		- Add the globally available "create new Laravel project" command to composer
-		  - open a new instance of Git Bash and run ```composer global require "laravel/installer"```.
+##### Installation
+- Installation: [Composer](https://getcomposer.org/download/)
+
+##### Operation
+- Composer functions are used through a command line interface.
+
+##### Extensions
+- Laravel Installer
+	- Add the globally available "create new Laravel project" command to composer
+	  - open a new instance of Git Bash and run ```composer global require "laravel/installer"```.
 
 ##### <a name="IDE"></a>IDE
 - An IDE is just a souped-up code editor. The IDE we will use is called Atom. Alternatively we suggest Microsoft Visual Studio
-- Core
-	- Google `Atom`, download installer and install.
-- <a name="Plugins/Extra_Features"></a> Plugins/Extra Features
-	- Custom Code Snippets
-		- Intro
-		  - Code Snippets enable you to create a custom library of commonly used code samples.
-		  - This means that instead of writing a full block of code (for instance `Hello Jack. How are you today?`) you can just use a shortcut (e.g. `greet` then tab key)
-		- Usage
-		  - Many IDEs support this either as a built-in extra feature or as an optional plugin (just search online for your IDE's variant)
-		  - If your using Atom
-		  - Atom Snippets comes as a built-in extra feature
-		  - In atom orient yourself to the snippets settings file with `File > Snippets`
-		  - At the bottom of the file add this code
-		  ```
-		    '.php':
-		    'Greeting for php':
-		    'prefix': 'greet'
-		    'body': 'Hello $1. How are you today?'
-		  ```
-		    - Line 1: Type of code
-		    - Line 2: Name
-		    - Line 3: Shortcut
-		    - Line 4: Sample
-		    - $1, $2.. etc: Is for the cursor position (press tab to go to the next position)
-		    - For multi lines samples wrap the code in two sets of these `'''`
-		  - To make multiple snippet for the same code type you must structure it like this
-		  ```
-		    '.php':
-		    'Greeting for php':
-		    'prefix': 'greet'
-		    'body': 'Hello $1. How are you today?'
-		    'Greeting for php2':
-		    'prefix': 'greet2'
-		    'body': 'Hello $1. How are you today2?'
-		  ```
-	- Setup to work with `.blade.php`
-		- To make it work with `blade` file you must install the blade syntax highlighter plugin called `language-blade` (then restart Atom)
-	- Blade Snippet Library
-		- This may also be useful (if your using Atom search for `blade-snippets`)
-	- Laravel Snippets
-		- This may also be useful (if your using Atom search for `Laravel`  by Cronos87)
 
-##### <a name="Database_Manager"></a> Database Manager
+##### Core
+- Google `Atom`, download installer and install.
+
+##### <a name="Plugins/Extra_Features"></a> Plugins/Extra Features
+- Custom Code Snippets
+	- Intro
+	  - Code Snippets enable you to create a custom library of commonly used code samples.
+	  - This means that instead of writing a full block of code (for instance `Hello Jack. How are you today?`) you can just use a shortcut (e.g. `greet` then tab key)
+	- Usage
+	  - Many IDEs support this either as a built-in extra feature or as an optional plugin (just search online for your IDE's variant)
+	  - If your using Atom
+	  - Atom Snippets comes as a built-in extra feature
+	  - In atom orient yourself to the snippets settings file with `File > Snippets`
+	  - At the bottom of the file add this code
+	  ```
+	    '.php':
+	    'Greeting for php':
+	    'prefix': 'greet'
+	    'body': 'Hello $1. How are you today?'
+	  ```
+	    - Line 1: Type of code
+	    - Line 2: Name
+	    - Line 3: Shortcut
+	    - Line 4: Sample
+	    - $1, $2.. etc: Is for the cursor position (press tab to go to the next position)
+	    - For multi lines samples wrap the code in two sets of these `'''`
+	  - To make multiple snippet for the same code type you must structure it like this
+	  ```
+	    '.php':
+	    'Greeting for php':
+	    'prefix': 'greet'
+	    'body': 'Hello $1. How are you today?'
+	    'Greeting for php2':
+	    'prefix': 'greet2'
+	    'body': 'Hello $1. How are you today2?'
+	  ```
+- Setup to work with `.blade.php`
+	- To make it work with `blade` file you must install the blade syntax highlighter plugin called `language-blade` (then restart Atom)
+- Blade Snippet Library
+	- This may also be useful (if your using Atom search for `blade-snippets`)
+- Laravel Snippets
+	- This may also be useful (if your using Atom search for `Laravel`  by Cronos87)
+
+#### <a name="Database_Manager"></a> Database Manager
 - General: We will be using MySQL Workbench this is a MySQL tool which allows you to manage databases.
 - Note: A homestead connection wont work if you have not launched your local server.
-- Install: Download installer from here [https://www.mysql.com/products/workbench/](https://www.mysql.com/products/workbench/).
-- Configuration
-  - Setup Connection
-    - General: Note that if this doesn't work the first time close the connection and try again.
-    - Launch MySQL Workbench and by default you will be on the welcome page which shows the message `Welcome to MySQL Workbench`
-    - Click the plus symbol in the page.
-    - In the popup configure these attributes
-      - Connection Name: `Local_Server`
-      - Connection Method: Standard TCP/IP over SSH
-      - SSH Hostname: your SSH Hostname
-        - To find out what your SSH Hostname is do this:
-          - Launch vagrant
-          - Check the load message for a field called `SSH address` the value here is your SSH Hostname. Copy it.
-      - SSH Username: `vagrant`
-      - SSH Password: click store in vault then enter `vagrant`
-      - MySQL Hostname: `localhost`
-      - Username: `homestead`
-      - Password: click store in vault then enter `secret`
-    - Then your connection will be saved to the welcome page.
-  - Reposition tools - Schemas tool bar
-    - Run the connection
-    - In the sidebar locate the schemas tool bar
-    - Click its expand/collapse toggler
-    - Now is will be nice and visible
-- Operations
+
+##### Install
+- Download installer from here [https://www.mysql.com/products/workbench/](https://www.mysql.com/products/workbench/).
+
+##### Configuration
+- Setup Connection
+  - General: Note that if this doesn't work the first time close the connection and try again.
+  - Launch MySQL Workbench and by default you will be on the welcome page which shows the message `Welcome to MySQL Workbench`
+  - Click the plus symbol in the page.
+  - In the popup configure these attributes
+    - Connection Name: `Local_Server`
+    - Connection Method: Standard TCP/IP over SSH
+    - SSH Hostname: your SSH Hostname
+      - To find out what your SSH Hostname is do this:
+        - Launch vagrant
+        - Check the load message for a field called `SSH address` the value here is your SSH Hostname. Copy it.
+    - SSH Username: `vagrant`
+    - SSH Password: click store in vault then enter `vagrant`
+    - MySQL Hostname: `localhost`
+    - Username: `homestead`
+    - Password: click store in vault then enter `secret`
+  - Then your connection will be saved to the welcome page.
+- Reposition tools - Schemas tool bar
+  - Run the connection
+  - In the sidebar locate the schemas tool bar
+  - Click its expand/collapse toggler
+  - Now is will be nice and visible
+
+##### Operations
   - To open MYSQL WorkBench launch it from its launch icon.
 
 
-#### <a name="For_Ubuntu"></a>For Ubuntu
-##### <a name="Local_Server"></a>Local Server
+### <a name="For_Ubuntu"></a>For Ubuntu
+#### <a name="Local_Server"></a>Local Server
 
 
 
-- Installation and Configuration
-	- Ubuntu
-		- I recommend
-		  - Organize a new internal hard-drive
-		  - Learn how to switch it with your old hard-drive
-		  - Turn off your PC and switch them
-		  - Install Ubuntu onto the new drive, this will delete everything that was on the drive
-	- Ngine X
-		- Install
-		  - `sudo apt install nginx`
-		  - Type `Y` then enter
-		- Configurations
-		  - Uninstall apache
-		    - `sudo apt autoremove apache2*`
-		- Test `nginx -v`
-	-PHP
-		- Install
-		```
-		  sudo apt-get install python-software-properties
-		  sudo add-apt-repository ppa:ondrej/php
-		  sudo apt-get update
-		  sudo apt-get install -y php7.2
-		```
-		- Extras
-		  - For using it with Laravel
-		    ```
-		      sudo apt install php7.2-zip php7.2-mbstring php7.2-json php7.2-gd php7.2-mysql php7.2-xml
-		    ```
-	- MySQL
-		- Install `sudo apt install mysql-client mysql-server mysql-common`
-		- Configure - Get connection to DB server by making a user account
-			- Open MySQL as admin - run `sudo mysql`
-			- Set account details `GRANT ALL PRIVILEGES ON *.* TO 'user'@'localhost' IDENTIFIED BY 'password';`
-			- exit MySQL - run `exit`
-	- App folder
-		- Make this folder: `Documents/Multimedia/laravel-apps`
-- Operation
-	- Run server orientate yourself in the terminal to your app inside `laravel-apps` and the run `php -S localhost`
-	- After completion close the server - press `ctrl+C`
+##### Installation and Configuration
+- Ubuntu
+	- I recommend
+	  - Organize a new internal hard-drive
+	  - Learn how to switch it with your old hard-drive
+	  - Turn off your PC and switch them
+	  - Install Ubuntu onto the new drive, this will delete everything that was on the drive
+- Ngine X
+	- Install
+	  - `sudo apt install nginx`
+	  - Type `Y` then enter
+	- Configurations
+	  - Uninstall apache
+	    - `sudo apt autoremove apache2*`
+	- Test `nginx -v`
+- PHP
+	- Install
+	```
+	  sudo apt-get install python-software-properties
+	  sudo add-apt-repository ppa:ondrej/php
+	  sudo apt-get update
+	  sudo apt-get install -y php7.2
+	```
+	- Extras
+	  - For using it with Laravel
+	    ```
+	      sudo apt install php7.2-zip php7.2-mbstring php7.2-json php7.2-gd php7.2-mysql php7.2-xml
+	    ```
+- MySQL
+	- Install `sudo apt install mysql-client mysql-server mysql-common`
+	- Configure - Get connection to DB server by making a user account
+		- Open MySQL as admin - run `sudo mysql`
+		- Set account details `GRANT ALL PRIVILEGES ON *.* TO 'user'@'localhost' IDENTIFIED BY 'password';`
+		- exit MySQL - run `exit`
+- App folder
+	- Make this folder: `Documents/Multimedia/laravel-apps`
+
+##### Operation
+- Run server orientate yourself in the terminal to your app inside `laravel-apps` and the run `php -S localhost`
+- After completion close the server - press `ctrl+C`
 
 
-##### <a name="Package_Installation_Manager_2"></a>Package Installation Manager </summary>
+#### <a name="Package_Installation_Manager_2"></a>Package Installation Manager </summary>
 - We will be using Composer
 
-- Installation
-	- Method 1
-		- Run `sudo apt install composer`
-		- enter your desktop password`
-	- Method 2: [Composer](https://getcomposer.org/download/)
-- Operation
-	- Composer functions are used through a command line interface.
-- Extensions
-	- Laravel Installer
-		- Add the globally available "create new Laravel project" command to composer
-		  - open a new instance of Git Bash and run ```composer global require "laravel/installer"```.
+##### Installation
+- Method 1
+	- Run `sudo apt install composer`
+	- enter your desktop password`
+- Method 2: [Composer](https://getcomposer.org/download/)
+##### Operation
+- Composer functions are used through a command line interface.
+##### Extensions
+- Laravel Installer
+	- Add the globally available "create new Laravel project" command to composer
+	  - open a new instance of Git Bash and run ```composer global require "laravel/installer"```.
 
-##### <a name="IDE_2"></a>IDE
+#### <a name="IDE_2"></a>IDE
 - An IDE is just a souped-up code editor. The IDE we will use is called Atom. Alternatively we suggest Microsoft Visual Studio
-- Core
-	- Go to `https://atom.io/`
-	- Download .deb installer
-- Plugins/Extra Features
-	- See the Window option's section of the same name [Plugins/Extra Features](#Plugins/Extra_Features)
+##### Core
+- Go to `https://atom.io/`
+- Download .deb installer
+
+##### Plugins/Extra Features
+- See the Window option's section of the same name [Plugins/Extra Features](#Plugins/Extra_Features)
 
 
-##### <a name="Database_Manager_2"></a> Database Manager
+#### <a name="Database_Manager_2"></a> Database Manager
 - General: We will be using MySQL Workbench this is a MySQL tool which allows you to manage databases.
 - Note: A homestead connection wont work if you have not launched your local server.
-- Installation
-  - `sudo apt install mysql-workbench`
-  - Click yes
-- Test
-  - Press start key and type workbench
-- Configurations
-  - Make new connection called `local` to your DB server using your database user details
-- Operations
-  - To open MYSQL WorkBench launch it from its launch icon.
+
+##### Installation
+- `sudo apt install mysql-workbench`
+- Click yes
+
+##### Test
+- Press start key and type workbench
+
+##### Configurations
+- Make new connection called `local` to your DB server using your database user details
+
+##### Operations
+- To open MYSQL WorkBench launch it from its launch icon.
 
 
-### <a name="3.2."></a>Sec. 3.2. Setup - The Laravel powered app
-#### Table Of Content
+## <a name="3.2."></a>Sec. 3.2. Setup - The Laravel powered app
+### Table Of Content
 
 
 - [General](#General)
 - [Source Code](#Source-Code)
 - [Database](#Database)
 
-#### <a name="General"></a>General
-##### Laravel Overview
+### <a name="General"></a>General
+#### Laravel Overview
 - Laravel is something you install on an app by app basis.
 - It determines the architecture of your apps source code and provides it with lots of useful prebuilt functions.
 
-##### PHP artisan
+#### PHP artisan
 - Other that all the fundamental mechanisms that we will cover in later sections you will also have access to a set of command line functions called PHP artisan.
 - These commands are helpful and can assist you while you build your application.
 
 
 
-#### <a name="Source-Code">Source Code</a>
+### <a name="Source-Code">Source Code</a>
 
-##### Using Windows
+#### Using Windows
 
-- Installation
-	- In Git Bash locate yourself using ```cd c:/laravel-apps```
-	- Decide on your project name e.g. `fundamental-mechanisms-app` (this is the example name because in the next section we will be practicing using what we call fundamental mechanisms)
-	- Decide if you want the latest version or and older versions
-	  - For latest do this
-	     - Run `composer create-project --prefer-dist laravel/laravel`. And if you have the Laravel extension for composer you can even use `laravel new fundamental-mechanisms-app`
-	  - Or for old version do This
-	     - Run ```composer create-project --prefer-dist laravel/laravel fundamental-mechanisms-app 5.2.29``` for specific version (in this case version 5.2.29).
-	     - If you get an error try first restarting Git Bash.
-- Configurations
-	- Map it in Homestead - to do this you will need to update this file `Homestead.yaml`, which is located in either `C:\Homestead\resources\` or `C:\Homestead\`
-	   - Configure these attributes
-	      - sites:
-		 - \- map: ```fundamental-mechanisms-app.test```
-		 - to: ```/home/vagrant/code/fundamental-mechanisms-app/public```
-	   - For multiple project running in parallel do This
-	      - Duplicate the above mentioned set of attributes and configure like this
-	      ```
-		sites:
-		    - map: fundamental-mechanisms-app.test
-		      to: /home/vagrant/code/fundamental-mechanisms-app/public
-		    - map: fundamental-mechanisms-app2.test
-		      to: /home/vagrant/code/fundamental-mechanisms-app2/public
-	      ```
-	- Map it in your host file
-	   - Using windows explorer locate yourself to here ```C:\Windows\System32\drivers\etc\```
-	   - Temporarily move the ```host``` file to your desktop.
-	   - Open the host file in a code editor and configure it so it's contents ends with (to run multiple projects duplicate one of these code lines and configure).
-	   ```
-	   192.168.10.10 laravel.test
-	   192.168.10.10 homestead.test
-	   192.168.10.10 fundamental-mechanisms-app.test
-	   ```
-	   - Move it back into it's original location ```C:\Windows\System32\drivers\etc\```.
-	- Provision homestead
-	    - Run homestead - run `cd c:/Homestead` and then `vagrant up`
-	    - Run the command ```vagrant provision```.
-- PHP version
-	- Check
-	  - Add this to your routes (see how in later sections) and
-	  ```
-	    Route::get('/phpversion', function () {
-	      echo phpversion();
-	    });
-	  ```
-	  - Then open the corresponding page in your browser
-	- Change
-	  - Open `Homestead.yaml`
-	  - Add and set a php field in your site configurations. The versions available to use are limited to "5.6", "7.0", "7.1", "7.2" and "7.3" ("7.3" is default)
-	   ```
-	     sites:
-		 - map: fundamental-mechanisms-app.test
-		   to: /home/vagrant/code/fundamental-mechanisms-app/public
-		   php: "5.6"
-	   ```
-	   - Provision homestead - Orientate yourself to `cd c:/Homestead` then `vagrant up` then `vagrant provision` then if you want `vagrant halt`
-- Testing
-	- Run your local server. Open your browser and enter the URL   ```fundamental-mechanisms-app.test/``` and see if a page opens with the text "Laravel".
-	- After completion close Homestead - run `vagrant halt`
-- Patches
-	- Foreach loop error
-	  - Cause
-	    - Software incompatibility: If you are running a version  of PHP that is higher than 7.1 with a version of Laravel that is lower than 5.6 you will get this error
-	    - Test your PHP and Laravel versions, here's how
-	      - Oriented yourself with `cd C:/laravel-apps/fundamental-mechanisms-app`
-	      - Run `php artisan --version` and `php -v`
-	  - Fix
-	    - Option 1
-	      - Go to `vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php` (eloquent builder file)
-		- Replace this: `$originalWhereCount = count($query->wheres);`
-		- With this: `$originalWhereCount = is_null($query->wheres) ? 0 : count($query->wheres);`
-	    - More info
-	      - This error shows when you try to run certain types of foreach loops and looks like this `count(): Parameter must be an array or an object that implements Countable`
-	      - See more at  https://stackoverflow.com/questions/48343557/count-parameter-must-be-an-array-or-an-object-that-implements-countable
-	    - Option 2
-	      - If your using Laravel version `5.2.29` revert your php version to `5.6`
-
-##### Using Ubuntu
-- Installation
-	- In terminal orientate yourself to `laravel-apps`
-	- Decide on your project name e.g. `fundamental-mechanisms-app` (this is the example name because in the next section we will be practicing using what we call fundamental mechanisms)
-	- Decide if you want the latest version or and older versions
-	  - For latest do this
-	     - Run `composer create-project --prefer-dist laravel/laravel`.
-	  - Or for old version do This
-	     - Run ```composer create-project --prefer-dist laravel/laravel fundamental-mechanisms-app 5.2.29``` for specific version (in this case version 5.2.29).
-	     - If you get an error try first restarting terminal.
-- Testing
-	- Run your local server. Open your browser and enter the URL `127.0.0.1` and see if a page opens with the text "Laravel".
-
-
-#### <a name="Database">Database</a>
 ##### Installation
-  - Create new DB
-    - Launch MySQL WorkBench then and open your server environments connection
-    - Click on the "new schema" symbol and
-    - Decide on a database name (we recommend using the same name as your app) `fundamental-mechanisms-app`.
+- In Git Bash locate yourself using ```cd c:/laravel-apps```
+- Decide on your project name e.g. `fundamental-mechanisms-app` (this is the example name because in the next section we will be practicing using what we call fundamental mechanisms)
+- Decide if you want the latest version or and older versions
+  - For latest do this
+     - Run `composer create-project --prefer-dist laravel/laravel`. And if you have the Laravel extension for composer you can even use `laravel new fundamental-mechanisms-app`
+  - Or for old version do This
+     - Run ```composer create-project --prefer-dist laravel/laravel fundamental-mechanisms-app 5.2.29``` for specific version (in this case version 5.2.29).
+     - If you get an error try first restarting Git Bash.
 
 ##### Configurations
-- Configure .env file
-	- If using Ubuntu
-	  - DB_HOST= `127.0.0.1`
-	  - DB_DATABASE= `fundamental-mechanisms-app`
-	  - DB_USERNAME= [your username]
-	  - DB_PASSWORD= [your password]
-	- If using Windows
-	  - DB_HOST= `192.168.10.10`
-	  - DB_DATABASE= `fundamental-mechanisms-app`
-	  - DB_USERNAME= `homestead`
-	  - DB_PASSWORD= `secret`
-- A note on security
-	- The database.php file (location in the `config` folder) is used to connect to the DB.
-	- But since the database login info may be sensitive it is not kept in that file.
-	- Rather there are two extra files: A `.env` file and a `.env.example` file.
-	- The `.env` file is used to store the database logins which the database.php file can reference to make the connection.
-	- This is so that when sharing your app with other people, say if they want to have their own implementation of your app, then you can ensure your databases security.
-	- This is done by leaving the `.env` file out and getting the recipient to set up their own `.env` file as per there own database settings.
-	- They will still have access to the `.env.example` file which they can use to see how to structure their `.env` file.
+- Map it in Homestead - to do this you will need to update this file `Homestead.yaml`, which is located in either `C:\Homestead\resources\` or `C:\Homestead\`
+   - Configure these attributes
+      - sites:
+	 - \- map: ```fundamental-mechanisms-app.test```
+	 - to: ```/home/vagrant/code/fundamental-mechanisms-app/public```
+   - For multiple project running in parallel do This
+      - Duplicate the above mentioned set of attributes and configure like this
+      ```
+	sites:
+	    - map: fundamental-mechanisms-app.test
+	      to: /home/vagrant/code/fundamental-mechanisms-app/public
+	    - map: fundamental-mechanisms-app2.test
+	      to: /home/vagrant/code/fundamental-mechanisms-app2/public
+      ```
+- Map it in your host file
+   - Using windows explorer locate yourself to here ```C:\Windows\System32\drivers\etc\```
+   - Temporarily move the ```host``` file to your desktop.
+   - Open the host file in a code editor and configure it so it's contents ends with (to run multiple projects duplicate one of these code lines and configure).
+   ```
+   192.168.10.10 laravel.test
+   192.168.10.10 homestead.test
+   192.168.10.10 fundamental-mechanisms-app.test
+   ```
+   - Move it back into it's original location ```C:\Windows\System32\drivers\etc\```.
+- Provision homestead
+    - Run homestead - run `cd c:/Homestead` and then `vagrant up`
+    - Run the command ```vagrant provision```.
+
+##### PHP version
+- Check
+  - Add this to your routes (see how in later sections) and
+  ```
+    Route::get('/phpversion', function () {
+      echo phpversion();
+    });
+  ```
+  - Then open the corresponding page in your browser
+- Change
+  - Open `Homestead.yaml`
+  - Add and set a php field in your site configurations. The versions available to use are limited to "5.6", "7.0", "7.1", "7.2" and "7.3" ("7.3" is default)
+   ```
+     sites:
+	 - map: fundamental-mechanisms-app.test
+	   to: /home/vagrant/code/fundamental-mechanisms-app/public
+	   php: "5.6"
+   ```
+   - Provision homestead - Orientate yourself to `cd c:/Homestead` then `vagrant up` then `vagrant provision` then if you want `vagrant halt`
 
 ##### Testing
+- Run your local server. Open your browser and enter the URL   ```fundamental-mechanisms-app.test/``` and see if a page opens with the text "Laravel".
+- After completion close Homestead - run `vagrant halt`
+
+##### Patches
+- Foreach loop error
+  - Cause
+    - Software incompatibility: If you are running a version  of PHP that is higher than 7.1 with a version of Laravel that is lower than 5.6 you will get this error
+    - Test your PHP and Laravel versions, here's how
+      - Oriented yourself with `cd C:/laravel-apps/fundamental-mechanisms-app`
+      - Run `php artisan --version` and `php -v`
+  - Fix
+    - Option 1
+      - Go to `vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php` (eloquent builder file)
+	- Replace this: `$originalWhereCount = count($query->wheres);`
+	- With this: `$originalWhereCount = is_null($query->wheres) ? 0 : count($query->wheres);`
+    - More info
+      - This error shows when you try to run certain types of foreach loops and looks like this `count(): Parameter must be an array or an object that implements Countable`
+      - See more at  https://stackoverflow.com/questions/48343557/count-parameter-must-be-an-array-or-an-object-that-implements-countable
+    - Option 2
+      - If your using Laravel version `5.2.29` revert your php version to `5.6`
+
+#### Using Ubuntu
+##### Installation
+- In terminal orientate yourself to `laravel-apps`
+- Decide on your project name e.g. `fundamental-mechanisms-app` (this is the example name because in the next section we will be practicing using what we call fundamental mechanisms)
+- Decide if you want the latest version or and older versions
+  - For latest do this
+     - Run `composer create-project --prefer-dist laravel/laravel`.
+  - Or for old version do This
+     - Run ```composer create-project --prefer-dist laravel/laravel fundamental-mechanisms-app 5.2.29``` for specific version (in this case version 5.2.29).
+     - If you get an error try first restarting terminal.
+
+##### Testing
+- Run your local server. Open your browser and enter the URL `127.0.0.1` and see if a page opens with the text "Laravel".
+
+
+### <a name="Database">Database</a>
+#### Installation
+- Create new DB
+  - Launch MySQL WorkBench then and open your server environments connection
+  - Click on the "new schema" symbol and
+  - Decide on a database name (we recommend using the same name as your app) `fundamental-mechanisms-app`.
+
+#### Configurations
+##### Configure .env file
+- If using Ubuntu
+  - DB_HOST= `127.0.0.1`
+  - DB_DATABASE= `fundamental-mechanisms-app`
+  - DB_USERNAME= [your username]
+  - DB_PASSWORD= [your password]
+- If using Windows
+  - DB_HOST= `192.168.10.10`
+  - DB_DATABASE= `fundamental-mechanisms-app`
+  - DB_USERNAME= `homestead`
+  - DB_PASSWORD= `secret`
+
+##### A note on security
+- The database.php file (location in the `config` folder) is used to connect to the DB.
+- But since the database login info may be sensitive it is not kept in that file.
+- Rather there are two extra files: A `.env` file and a `.env.example` file.
+- The `.env` file is used to store the database logins which the database.php file can reference to make the connection.
+- This is so that when sharing your app with other people, say if they want to have their own implementation of your app, then you can ensure your databases security.
+- This is done by leaving the `.env` file out and getting the recipient to set up their own `.env` file as per there own database settings.
+- They will still have access to the `.env.example` file which they can use to see how to structure their `.env` file.
+
+#### Testing
 - Run `cd C:/laravel-apps/fundamental-mechanisms-app` then `php artisan tinker`
 - Run
 `DB::connection()->getPdo();`
@@ -2366,239 +2393,241 @@
     ```
   - Test URL: `fundamental-mechanisms-app.test/ExampleRoute10/1/2/3`
 
-## <a name="5."></a>Sec. 5. Real-World Examples
-### <a name="5.1."></a>Sec. 5.1. Real-World Examples - Intro
 
-#### Make a new laravel powered app
-##### Install
+## <a name="5.1."></a>Sec. 5.1. Real-World Examples - Intro
+
+### Make a new laravel powered app
+#### Install
 - Called it `real-world-examples-app` the method was previously demonstrated.
 
-##### Make table-model pairs
-- Create them
-	- posts
-	  - Command:
-	    - Orientate with `cd C:/laravel-apps/real-world-examples-app`
-	    - Run `php artisan make:model Post -m`
-	- users
-	  - Already made
-	- role_user
-	  - Commands:
-	    - Table/Migration: `php artisan make:migration role_user --create="role_user"`
-	    - Model: `php artisan make:model RoleUser`
-	- roles
-	  - Command: `php artisan make:model Role -m`
-	- countries
-	  - Command: `php artisan make:model Country -m`
-	- photos
-	  - Command: `php artisan make:model Photo -m`
-	- videos
-	  - Command: `php artisan make:model Video -m`
-	- tags
-	  - Command: `php artisan make:model Tag -m`
-	- tag_relationships
-	  - Command: `php artisan make:model TagRelationship -m`
-- Configure them
-	- General: Add the following column functions (to the migrations) and model methods (to the models)
-	- posts
-	  - Similar to
-	    - Model: example_models
-	    - From the section on: Database 	
-	    - Video course's section: 41s
-	  - Columns
-	  ```
-			$table->string('title');
-			$table->text('content');
-			$table->integer('user_id')->unsigned();    
-			$table->softDeletes();
-	  ```
-	  - Model methods
-	    - Part 1 (put this underneath the other `use` function)
-	    ```
-	      use Illuminate\Database\Eloquent\SoftDeletes;
-	    ```
-	    - Part 2
-	    ```
-		use SoftDeletes;
-		protected $dates = ['deleted_at'];
-		protected $table = 'posts';
-		protected $fillable = [
-		  'title',
-		  'body',
-		  'user_id',
-		];
-		public function User(){
-		  return $this->belongsTo('App\User');
-		}
-		public function Roles(){
-		  return $this->belongsToMany('App\Role')->withPivot('created_at');
-		}
-		public function Photos() {
-		  return $this->morphMany('App\Photo', 'photo_relative');
-		}
-		public function Tags() {
-		  return $this->morphToMany('App\Tag', 'tag_relative');
-		}
-	    ```
-	- users
-	  - Similar to
-	    - Model: example_parent_models
-	    - From the section on: Basic Relationships - One to One 	
-	    - Video course's section: 62
-	  - Columns: Already set
-	  - Model methods
-	  ```
-	      public function Post(){
-		return $this->hasOne('App\Post');
-	      }
-	      public function Posts(){
-		return $this->hasMany('App\Post');
-	      }
-	      public function Roles(){
-		return $this->belongsToMany('App\Role')->withPivot('created_at');
-	      }
-	      public function Photos() {
-		return $this->morphMany('App\Photo', 'photo_relative');
-	      }
-	  ```
-	- role_user
-	  - Similar to
-	    - Model: example_grandparent_model_example_parent_model
-	    - From the section on: Basic Relationships - Many to many 	
-	    - Video course's section: 66-67
-	  - Columns
-	  ```
-			$table->integer('user_id');
-			$table->integer('role_id');
-	  ```
-	  - Model methods
-	  ```
-	      protected $table = 'role_user';
-	      protected $fillable = [
-		'user_id',
-		'role_id',
-	      ];
-	  ```
-	- roles
-	  - Similar to
-	    - Model:  example_grandparent_models
-	    - From the section on: Basic Relationships - Many to many  	
-	    - Video course's section: 	66-67
-	  - Columns
-	  ```
-			$table->string('name');
-	  ```
-	  - Model methods
-	  ```
-	      protected $fillable = [
-	      'name'
-	      ];
-	      public function Users(){
-		return $this->belongsToMany('App\User');
-	      }
-	  ```
-	- countries
-	  - Similar to
-	    - Model:  example_grandparent2_models
-	    - From the section on: Advanced Relationships - Relationship with 2 Levels of Separation 	
-	    - Video course's section: 68-70
-	  - Columns
-	  ```
-			$table->string('name');
-	  ```
-	  - Model methods
-	  ```
-	      protected $fillable = [
-	      'name',
-	      ];
-	      public function Posts(){
-		return $this->hasManyThrough('App\Post', 'App\User');
-	      }
-	  ```
-	- photos
-	  - Similar to
-	    - Model:  example_great_grand_child_models (although due to a mistake it's equivalent is relatively different)
-	    - From the section on: Advanced Relationships - Polymorphic Relationships - One to many 	
-	    - Video course's section: 71-73
-	  - Columns
-	  ```
-			$table->integer('photo_relative_id');
-			$table->string('photo_relative_type');
-			$table->string('file');
-	  ```
-	  - Model methods
-	  ```
-	      protected $fillable = [
-		'photo_relative_id',
-		'photo_relative_type',
-		'file',
-	      ];
-	      public function photo_relative() {
-		return $this->morphTo();
-	      }
-	  ```
-	- videos
-	  - Similar to
-	    - Model:  example_great_grand_child_models (although due to a mistake it's equivalent is relatively different)
-	    - From the section on: Advanced Relationships - Polymorphic Relationships - One to many 	
-	    - Video course's section: 71-73
-	  - Columns
-	  ```
-			$table->string('file');
-	  ```
-	  - Model methods
-	  ```
-	      protected $fillable = [
-		'file',
-	      ];
-	      public function Tags() {
-		return $this->morphToMany('App\Tag', 'tag_relative');
-	      }
-	  ```
-	- tags
-	  - Similar to
-	    - Model:  example_parent_model2s
-	    - From the section on: Advanced Relationships - Polymorphic Relationships - Many to many  	
-	    - Video course's section: 	74-77
-	  - Columns
-	  ```
-			$table->string('name');
-	  ```
-	  - Model methods
-	  ```
-	      protected $fillable = [
-	      'name',
-	      ];
-	      public function Posts() {
-		return $this->morphedByMany('App\Post', 'tag_relative');
-	      }
-	      public function Photos() {
-		return $this->morphedByMany('App\Video', 'tag_relative');
-	      }
-	  ```
-	- tag_relationships
-	  - Similar to
-	    - Model:  example_parent_model2_relation
-	    - From the section on: Advanced Relationships - Polymorphic Relationships - Many to many 	
-	    - Video course's section: 74-77
-	  - Columns
-	  ```
-			$table->string('tag_id');
-			$table->integer('tag_relative_id');
-			$table->string('tag_relative_type');
-	  ```
-	  - Model methods
-	  ```
-	      protected $fillable = [
-	      'tag_id',
-	      'tag_relative_id',
-	      'tag_relative_type',
-	      ];
-	  ```
-- Impliment them
-	- Orientate yourself with `cd C:/laravel-apps/real-world-examples-app`
-	- Run `php artisan migrate`
+#### Make table-model pairs
+##### Create them
+- posts
+  - Command:
+    - Orientate with `cd C:/laravel-apps/real-world-examples-app`
+    - Run `php artisan make:model Post -m`
+- users
+  - Already made
+- role_user
+  - Commands:
+    - Table/Migration: `php artisan make:migration role_user --create="role_user"`
+    - Model: `php artisan make:model RoleUser`
+- roles
+  - Command: `php artisan make:model Role -m`
+- countries
+  - Command: `php artisan make:model Country -m`
+- photos
+  - Command: `php artisan make:model Photo -m`
+- videos
+  - Command: `php artisan make:model Video -m`
+- tags
+  - Command: `php artisan make:model Tag -m`
+- tag_relationships
+  - Command: `php artisan make:model TagRelationship -m`
 
-##### Create a layout view file
+##### Configure them
+- General: Add the following column functions (to the migrations) and model methods (to the models)
+- posts
+  - Similar to
+    - Model: example_models
+    - From the section on: Database 	
+    - Video course's section: 41s
+  - Columns
+  ```
+		$table->string('title');
+		$table->text('content');
+		$table->integer('user_id')->unsigned();    
+		$table->softDeletes();
+  ```
+  - Model methods
+    - Part 1 (put this underneath the other `use` function)
+    ```
+      use Illuminate\Database\Eloquent\SoftDeletes;
+    ```
+    - Part 2
+    ```
+	use SoftDeletes;
+	protected $dates = ['deleted_at'];
+	protected $table = 'posts';
+	protected $fillable = [
+	  'title',
+	  'body',
+	  'user_id',
+	];
+	public function User(){
+	  return $this->belongsTo('App\User');
+	}
+	public function Roles(){
+	  return $this->belongsToMany('App\Role')->withPivot('created_at');
+	}
+	public function Photos() {
+	  return $this->morphMany('App\Photo', 'photo_relative');
+	}
+	public function Tags() {
+	  return $this->morphToMany('App\Tag', 'tag_relative');
+	}
+    ```
+- users
+  - Similar to
+    - Model: example_parent_models
+    - From the section on: Basic Relationships - One to One 	
+    - Video course's section: 62
+  - Columns: Already set
+  - Model methods
+  ```
+      public function Post(){
+	return $this->hasOne('App\Post');
+      }
+      public function Posts(){
+	return $this->hasMany('App\Post');
+      }
+      public function Roles(){
+	return $this->belongsToMany('App\Role')->withPivot('created_at');
+      }
+      public function Photos() {
+	return $this->morphMany('App\Photo', 'photo_relative');
+      }
+  ```
+- role_user
+  - Similar to
+    - Model: example_grandparent_model_example_parent_model
+    - From the section on: Basic Relationships - Many to many 	
+    - Video course's section: 66-67
+  - Columns
+  ```
+		$table->integer('user_id');
+		$table->integer('role_id');
+  ```
+  - Model methods
+  ```
+      protected $table = 'role_user';
+      protected $fillable = [
+	'user_id',
+	'role_id',
+      ];
+  ```
+- roles
+  - Similar to
+    - Model:  example_grandparent_models
+    - From the section on: Basic Relationships - Many to many  	
+    - Video course's section: 	66-67
+  - Columns
+  ```
+		$table->string('name');
+  ```
+  - Model methods
+  ```
+      protected $fillable = [
+      'name'
+      ];
+      public function Users(){
+	return $this->belongsToMany('App\User');
+      }
+  ```
+- countries
+  - Similar to
+    - Model:  example_grandparent2_models
+    - From the section on: Advanced Relationships - Relationship with 2 Levels of Separation 	
+    - Video course's section: 68-70
+  - Columns
+  ```
+		$table->string('name');
+  ```
+  - Model methods
+  ```
+      protected $fillable = [
+      'name',
+      ];
+      public function Posts(){
+	return $this->hasManyThrough('App\Post', 'App\User');
+      }
+  ```
+- photos
+  - Similar to
+    - Model:  example_great_grand_child_models (although due to a mistake it's equivalent is relatively different)
+    - From the section on: Advanced Relationships - Polymorphic Relationships - One to many 	
+    - Video course's section: 71-73
+  - Columns
+  ```
+		$table->integer('photo_relative_id');
+		$table->string('photo_relative_type');
+		$table->string('file');
+  ```
+  - Model methods
+  ```
+      protected $fillable = [
+	'photo_relative_id',
+	'photo_relative_type',
+	'file',
+      ];
+      public function photo_relative() {
+	return $this->morphTo();
+      }
+  ```
+- videos
+  - Similar to
+    - Model:  example_great_grand_child_models (although due to a mistake it's equivalent is relatively different)
+    - From the section on: Advanced Relationships - Polymorphic Relationships - One to many 	
+    - Video course's section: 71-73
+  - Columns
+  ```
+		$table->string('file');
+  ```
+  - Model methods
+  ```
+      protected $fillable = [
+	'file',
+      ];
+      public function Tags() {
+	return $this->morphToMany('App\Tag', 'tag_relative');
+      }
+  ```
+- tags
+  - Similar to
+    - Model:  example_parent_model2s
+    - From the section on: Advanced Relationships - Polymorphic Relationships - Many to many  	
+    - Video course's section: 	74-77
+  - Columns
+  ```
+		$table->string('name');
+  ```
+  - Model methods
+  ```
+      protected $fillable = [
+      'name',
+      ];
+      public function Posts() {
+	return $this->morphedByMany('App\Post', 'tag_relative');
+      }
+      public function Photos() {
+	return $this->morphedByMany('App\Video', 'tag_relative');
+      }
+  ```
+- tag_relationships
+  - Similar to
+    - Model:  example_parent_model2_relation
+    - From the section on: Advanced Relationships - Polymorphic Relationships - Many to many 	
+    - Video course's section: 74-77
+  - Columns
+  ```
+		$table->string('tag_id');
+		$table->integer('tag_relative_id');
+		$table->string('tag_relative_type');
+  ```
+  - Model methods
+  ```
+      protected $fillable = [
+      'tag_id',
+      'tag_relative_id',
+      'tag_relative_type',
+      ];
+  ```
+
+##### Impliment them
+- Orientate yourself with `cd C:/laravel-apps/real-world-examples-app`
+- Run `php artisan migrate`
+
+#### Create a layout view file
 - Orientate yourself to you views folder
 - Create and orientate yourself to a subfolder called `layouts`
 - Create the file `app.blade.php`
@@ -2621,402 +2650,419 @@
 
 
 
-### <a name="5.2."></a>Sec. 5.2. Real-World Examples - Forms
+## <a name="5.2."></a>Sec. 5.2. Real-World Examples - Forms
 
-#### Table Of Content
+### Table Of Content
 - [Basics](#Basics)
 - [LC Form Builder](#LC-Form-Builder)
 - [Validation](#Validation)
 
 
-#### <a name="Basics"></a> Basics
-##### Setup
+### <a name="Basics"></a> Basics
+#### Setup
 
-- Controller: `php artisan make:controller --resource PostsController`
-- Route  
+##### Controller
+
+`php artisan make:controller --resource PostsController`
+
+
+##### Route  
 ```
   Route::resource('/posts','PostsController');
 ```
-  - Check all the resultant routes
-    - Orientate yourself `cd C:/laravel-apps/real-world-examples-app`
-    - Run `php artisan route:list`
-- Views
-  - Orientate yourself to you views folder
-  - Create and orientate yourself to a subfolder called `posts`
-  - Create the following files
-    - `index.blade.php`
-    - `create.blade.php`
-    - `show.blade.php`
-    - `edit.blade.php`
+- Check all the resultant routes
+  - Orientate yourself `cd C:/laravel-apps/real-world-examples-app`
+  - Run `php artisan route:list`
 
-##### Fine tuning
-- Create Post page
-	- Part 1
-	  - View
-	    - Orientate yourself to `create.blade.php`
-	    ```
-	      @extends('layouts.app')
-	      @section('content')
-	      <h1>Create Post</h1>
-	      <form class="" action="/posts" method="post">
-		<input type="text" name="title" value=""  placeholder="Enter title">
-		{{csrf_field()}}
-		<input type="submit" name="submit" value="Submit">
-	      </form>
-	      @endsection
-	    ```
-	  - Controller
-	    - This goes in the posts controller's "create" method
-	    ```
-	      return view('posts.create');
-	    ```
-	- Part 2
-	  - Controller
-	    - Add a model usage namespace
-	      - Orientate yourself to your posts controller file
-	      - Add the model usage namespace `use  App\Post;`  at the top directly underneath the "namespace" function.
-	    - This goes in the posts controller's "store" method
-	      - Part A
-		- Option 1
-		```
-		  Post::create($request->all());
-		```
-		- Option 2
-		```
-		  $input = $request->all();
-		  $input['title'] = $request->title;
-		  Post::create($request->all());
-		```
-		- Option 3
-		```
-		  $post = new Post;
-		  $post->title = $request->title;
-		  $post->save();
-		```
-	      - Part B
-	      ```
-		return redirect('/posts');
-	      ```
-	- Test URL: `../posts/create`
-- Lists Posts page
-	- View
-	  - Orientate yourself to `index.blade.php`
-	  ```
-	    @extends('layouts.app')
-	    @section('content')
-	    <h1>List Posts</h1>
-	    <ul>
-	      <li><a href="{{route('posts.create')}}">Create post</a></li>
-	      @foreach($posts as $post)
-	      <li><a href="{{route('posts.show',$post->id)}}">{{$post->title}}</a></li>
-	      @endforeach
-	    </ul>
-	    @endsection
-	  ```
-	- Controller
-	  - This goes in the posts controller's "index" method
-	    - Part 1
-	    ```
-	      $posts = Post::all();
-	    ```
-	    - Part 2
-	    ```
-	      return view('posts.index', compact('posts'));
-	    ```
-	- Test URL: `../posts`
-- View Posts page
-	- View
-	  - Orientate yourself to `show.blade.php`
-	  ```
-	    @extends('layouts.app')
-	    @section('content')
-	    <h1>View Post</h1>
-	    <h2><a href="{{route('posts.edit',$post->id)}}">{{$post->title}}</a></h2>
-	    @endsection
-	  ```
-	- Controller
-	  - This goes in the posts controller's "show" method
-	  ```
-	    $post = Post::findorfail($id);
-	    return view('posts.show', compact('post'));
-	  ```
-	- Test URL: `../posts/4`
-- Edit/Delete Posts page
-	- Part 1
-	  - View
-	    - Orientate yourself to `edit.blade.php`
-	    ```
-	    @extends('layouts.app')
-	    @section('content')
-	    <h1>Edit Post</h1>
-	    <form class="" action="/posts/{{$post->id}}" method="post">
-	      {{csrf_field()}}
-	      <input type="hidden" name="_method" value="PUT">
-	      <input type="text" name="title" value="{{$post->title}}"  placeholder="Enter title">
-	      <input type="submit" name="submit" value="Update">
-	    </form>
-	    <form class="" action="/posts/{{$post->id}}" method="post">
-	      <input type="hidden" name="_method" value="DELETE">
-	      {{csrf_field()}}
-	      <input type="submit" value="Delete">
-	    </form>
-	    @endsection
-	    ```
-	  - Controller
-	    - This goes in the posts controller's "edit" method
-	    ```
-	      $post = Post::findOrFail($id);
-	      return view('posts.edit', compact('post'));
-	    ```
-	- Part 2
-	  - Controller
-	    - This goes in the posts controller's "update" method
-	    ```
-	      $post = Post::findOrFail($id);
-	      $post->update($request->all());
-	      return redirect('/posts');
-	    ```
-	- Part 3
-	  - Controller
-	    - This goes in the posts controller's "delete" method
-	    ```
-	      $post = Post::whereId($id)->first()->delete();
-	      return redirect('/posts');
-	    ```
-	- Test URL: `../posts/4/edit`
+##### Views
+- Orientate yourself to you views folder
+- Create and orientate yourself to a subfolder called `posts`
+- Create the following files
+  - `index.blade.php`
+  - `create.blade.php`
+  - `show.blade.php`
+  - `edit.blade.php`
 
-####  <a name="LC-Form-Builder"></a> LC Form Builder
-##### Setup
+#### Fine tuning
+##### Create Post page
+- Part 1
+  - View
+    - Orientate yourself to `create.blade.php`
+    ```
+      @extends('layouts.app')
+      @section('content')
+      <h1>Create Post</h1>
+      <form class="" action="/posts" method="post">
+	<input type="text" name="title" value=""  placeholder="Enter title">
+	{{csrf_field()}}
+	<input type="submit" name="submit" value="Submit">
+      </form>
+      @endsection
+    ```
+  - Controller
+    - This goes in the posts controller's "create" method
+    ```
+      return view('posts.create');
+    ```
+- Part 2
+  - Controller
+    - Add a model usage namespace
+      - Orientate yourself to your posts controller file
+      - Add the model usage namespace `use  App\Post;`  at the top directly underneath the "namespace" function.
+    - This goes in the posts controller's "store" method
+      - Part A
+	- Option 1
+	```
+	  Post::create($request->all());
+	```
+	- Option 2
+	```
+	  $input = $request->all();
+	  $input['title'] = $request->title;
+	  Post::create($request->all());
+	```
+	- Option 3
+	```
+	  $post = new Post;
+	  $post->title = $request->title;
+	  $post->save();
+	```
+      - Part B
+      ```
+	return redirect('/posts');
+      ```
+- Test URL: `../posts/create`
+
+##### Lists Posts page
+- View
+  - Orientate yourself to `index.blade.php`
+  ```
+    @extends('layouts.app')
+    @section('content')
+    <h1>List Posts</h1>
+    <ul>
+      <li><a href="{{route('posts.create')}}">Create post</a></li>
+      @foreach($posts as $post)
+      <li><a href="{{route('posts.show',$post->id)}}">{{$post->title}}</a></li>
+      @endforeach
+    </ul>
+    @endsection
+  ```
+- Controller
+  - This goes in the posts controller's "index" method
+    - Part 1
+    ```
+      $posts = Post::all();
+    ```
+    - Part 2
+    ```
+      return view('posts.index', compact('posts'));
+    ```
+- Test URL: `../posts`
+
+##### View Posts page
+- View
+  - Orientate yourself to `show.blade.php`
+  ```
+    @extends('layouts.app')
+    @section('content')
+    <h1>View Post</h1>
+    <h2><a href="{{route('posts.edit',$post->id)}}">{{$post->title}}</a></h2>
+    @endsection
+  ```
+- Controller
+  - This goes in the posts controller's "show" method
+  ```
+    $post = Post::findorfail($id);
+    return view('posts.show', compact('post'));
+  ```
+- Test URL: `../posts/4`
+
+##### Edit/Delete Posts page
+- Part 1
+  - View
+    - Orientate yourself to `edit.blade.php`
+    ```
+    @extends('layouts.app')
+    @section('content')
+    <h1>Edit Post</h1>
+    <form class="" action="/posts/{{$post->id}}" method="post">
+      {{csrf_field()}}
+      <input type="hidden" name="_method" value="PUT">
+      <input type="text" name="title" value="{{$post->title}}"  placeholder="Enter title">
+      <input type="submit" name="submit" value="Update">
+    </form>
+    <form class="" action="/posts/{{$post->id}}" method="post">
+      <input type="hidden" name="_method" value="DELETE">
+      {{csrf_field()}}
+      <input type="submit" value="Delete">
+    </form>
+    @endsection
+    ```
+  - Controller
+    - This goes in the posts controller's "edit" method
+    ```
+      $post = Post::findOrFail($id);
+      return view('posts.edit', compact('post'));
+    ```
+- Part 2
+  - Controller
+    - This goes in the posts controller's "update" method
+    ```
+      $post = Post::findOrFail($id);
+      $post->update($request->all());
+      return redirect('/posts');
+    ```
+- Part 3
+  - Controller
+    - This goes in the posts controller's "delete" method
+    ```
+      $post = Post::whereId($id)->first()->delete();
+      return redirect('/posts');
+    ```
+- Test URL: `../posts/4/edit`
+
+###  <a name="LC-Form-Builder"></a> LC Form Builder
+#### Setup
 - If you like you can see more info about the Laravel Collective Form Builder at https://laravelcollective.com/docs/5.2/html
 
-- Install packages
-	- Configure composer
-	  - Oriented yourself to `composer.json` and paste `"laravelcollective/html":"^5.2.0"` as a new line in the `"require"` section. Make sure to put a comma after the previous item.
-	  - If your using a Laravel version that doesn't fit into the `5.2` range then you will need to adapt the code.
-	- Run composer
-	  - Orientate yourself `cd C:/laravel-apps/real-world-examples-app`
-	  - Run `composer update`
-- Configure package
-	- Configure `app.php`
-	  - Part 1
-	    - Orientate yourself to `config/app.php`
-	    - Paste the following code directly above the existing comment
-	      - The code
-	      ```
-	      Collective\Html\HtmlServiceProvider::class,
-	      ```
-	      - The comment
-	      ```
-		/*
-		 * Application Service Providers...
-		 */
-	      ```
-	  - Part 2
-	    - Orientate yourself to `config/app.php` and paste the following code as a new line in the `'aliases'` section. Make sure to put a comma after the previous item.
-	    ```
-	      'Form' => Collective\Html\FormFacade::class,
-	      'Html' => Collective\Html\HtmlFacade::class,
-	    ```
+##### Install packages
+- Configure composer
+  - Oriented yourself to `composer.json` and paste `"laravelcollective/html":"^5.2.0"` as a new line in the `"require"` section. Make sure to put a comma after the previous item.
+  - If your using a Laravel version that doesn't fit into the `5.2` range then you will need to adapt the code.
+- Run composer
+  - Orientate yourself `cd C:/laravel-apps/real-world-examples-app`
+  - Run `composer update`
 
-##### Usage
-- Create Post page
-	- View
-	  - Orientate yourself to `create.blade.php`
-	  - Edit the file to look like this
-	  ```
-	    @extends('layouts.app')
-	    @section('content')
-	    <h1>Create Post</h1>
-	    {!! Form::open(['method'=>'POST', 'action'=>'PostsController@store']) !!}
-	      <div class="form-group">
-		{!! Form::label('title', 'Title:') !!}
-		{!! Form::text('title', null, ['class'=>'form-control']) !!}
-	      </div>
-	      <div class="form-group">
-		{!! Form::submit('Create Post', ['class'=>'btn btn-primary']) !!}
-	      </div>
-	    {!! Form::close() !!}
-	    @endsection
-	  ```
-- Lists Posts page
-	- View
-	  - Orientate yourself to `index.blade.php`
-	  - Edit the file to look like this
-	  ```
-	  ```
-- View Posts page
-	- View
-	  - Orientate yourself to `show.blade.php`
-	  - Edit the file to look like this
-	  ```
-	  ```
-- Edit/Delete Posts page
-	- View
-	  - Orientate yourself to `edit.blade.php`
-	  - Edit the file
-	    - Final result
-	    ```
-	      @extends('layouts.app')
-	      @section('content')
-	      <h1>Edit Post</h1>
-	      {!! Form::model($post, ['method'=>'PATCH', 'action'=>['PostsController@update', $post->id]]) !!}
-		<div class="form-group">
-		  {!! Form::label('title', 'Title:') !!}
-		  {!! Form::text('title', null, ['class'=>'form-control']) !!}
-		</div>
-		<div class="form-group">
-		  {!! Form::submit('Update', ['class'=>'btn btn-primary']) !!}
-		</div>
-	      {!! Form::close() !!}
-	      {!! Form::open(['method'=>'DELETE', 'action'=>['PostsController@destroy', $post->id]]) !!}
-		<div class="form-group">
-		  {!! Form::submit('Delete', ['class'=>'btn btn-danger']) !!}
-		</div>
-	      {!! Form::close() !!}
-	      @endsection
-	    ```
-	    - How we got the final result
-	      - Edit part
-		- Replaced the first form with the same form content as we used in the recent `create.blade.php`
-		- Adaptions
-		  - but used the method `PATCH` not `POST`
-		  - and used the action `PostsController@update` not `PostsController@store`
-		  - Used the submit text `Update` not `Create Post`
-		  - For the opening form function
-		    - Used the opening form function `model` not `open` and add a new parameter of `$post` which goes first
-		    - Made the action an array so that it can also include `$post->id`
-		    - So it looks like this
-		    ```
-		    {!! Form::model($post, ['method'=>'PATCH', 'action'=>'PostsController@update']) !!}
-		    ```
-	      - Delete part
-		- Replaced the second form also with the same form content as we used in the recent `create.blade.php`
-		- Adaptions
-		  - but used the method `DELETE` not `POST`
-		  - and used the action `PostsController@destroy` not `PostsController@store`
-		  - Used the submit text `Delete` not `Create Post`
-		  - Used the css class text `btn-danger` not `btn-primary`
-		  - And removed the title text, title label and their form group
-		  - For the opening form function
-		    - Made the action an array so that it can also include `$post->id`
-		    - So it looked like this
-		    ```
-		    {!! Form::open(['method'=>'DELETE', 'action'=>['PostsController@destroy', $post->id]]) !!}
-		    ```
+##### Configure package
+- Configure `app.php`
+  - Part 1
+    - Orientate yourself to `config/app.php`
+    - Paste the following code directly above the existing comment
+      - The code
+      ```
+      Collective\Html\HtmlServiceProvider::class,
+      ```
+      - The comment
+      ```
+	/*
+	 * Application Service Providers...
+	 */
+      ```
+  - Part 2
+    - Orientate yourself to `config/app.php` and paste the following code as a new line in the `'aliases'` section. Make sure to put a comma after the previous item.
+    ```
+      'Form' => Collective\Html\FormFacade::class,
+      'Html' => Collective\Html\HtmlFacade::class,
+    ```
 
-##### LC Form Builder Snippets
-- Intro
-  - To make the writing of commonly used LC Form Builder code samples easier we will make them into snippets
-  - If you're using the Atom IDE the method of doing this was demonstrated in the Development Tools part of this course
-- Submit button
-  - Type of code: `php`
-  - Name: `LC Form Builder Sumbit Button`
-  - Shortcut: `LCsumbit`
-  - Sample:
+#### Usage
+##### Create Post page
+- View
+  - Orientate yourself to `create.blade.php`
+  - Edit the file to look like this
   ```
-    '''
+    @extends('layouts.app')
+    @section('content')
+    <h1>Create Post</h1>
+    {!! Form::open(['method'=>'POST', 'action'=>'PostsController@store']) !!}
       <div class="form-group">
-        {!! Form::submit('$1', ['class'=>'btn btn-$2']) !!}
-      </div>
-    '''
-  ```
-- Text input
-  - Type of code: `php`
-  - Name: `LC Form Builder Text input`
-  - Shortcut: `LCtextinput`
-  - Sample:
-  ```
-    '''
-      <div class="form-group">
-        {!! Form::label('$1', '$2:') !!}
-        {!! Form::text('$1', null, ['class'=>'form-control']) !!}
-      </div>
-    '''
-  ```
-- Form
-  - Type of code: `php`
-  - Name: `LC Form Builder Form`
-  - Shortcut: `LCform`
-  - Sample:
-  ```
-    '''
-    {!! Form::open(['method'=>'$1', 'action'=>'PostsController@$2']) !!}
-      <div class="form-group">
-        {!! Form::label('$3', '$4:') !!}
-        {!! Form::text('$3', null, ['class'=>'form-control']) !!}
+	{!! Form::label('title', 'Title:') !!}
+	{!! Form::text('title', null, ['class'=>'form-control']) !!}
       </div>
       <div class="form-group">
-        {!! Form::submit('$5', ['class'=>'btn btn-$6']) !!}
+	{!! Form::submit('Create Post', ['class'=>'btn btn-primary']) !!}
       </div>
     {!! Form::close() !!}
-    '''
+    @endsection
   ```
 
-#### <a name="Validation"></a> Validation
-#####
+##### Lists Posts page
+- View
+  - Orientate yourself to `index.blade.php`
+  - Edit the file to look like this
+  ```
+  ```
 
-- Intro
-  - We will use Laravel's automatic validation errors messages (e.g. "please enter a password with more that 5 characters")
-  - This is thought of as setting constraints to the type of requests the user is allowed to make
-- Validation message plus basic request validator
-  - Create Post page
-    - "Store" controller
-      - Add the `basic request validator` code below to the store method and make sure it goes above it's sibling functions
+##### View Posts page
+- View
+  - Orientate yourself to `show.blade.php`
+  - Edit the file to look like this
+  ```
+  ```
+
+##### Edit/Delete Posts page
+- View
+  - Orientate yourself to `edit.blade.php`
+  - Edit the file
+    - Final result
+    ```
+      @extends('layouts.app')
+      @section('content')
+      <h1>Edit Post</h1>
+      {!! Form::model($post, ['method'=>'PATCH', 'action'=>['PostsController@update', $post->id]]) !!}
+	<div class="form-group">
+	  {!! Form::label('title', 'Title:') !!}
+	  {!! Form::text('title', null, ['class'=>'form-control']) !!}
+	</div>
+	<div class="form-group">
+	  {!! Form::submit('Update', ['class'=>'btn btn-primary']) !!}
+	</div>
+      {!! Form::close() !!}
+      {!! Form::open(['method'=>'DELETE', 'action'=>['PostsController@destroy', $post->id]]) !!}
+	<div class="form-group">
+	  {!! Form::submit('Delete', ['class'=>'btn btn-danger']) !!}
+	</div>
+      {!! Form::close() !!}
+      @endsection
+    ```
+    - How we got the final result
+      - Edit part
+	- Replaced the first form with the same form content as we used in the recent `create.blade.php`
+	- Adaptions
+	  - but used the method `PATCH` not `POST`
+	  - and used the action `PostsController@update` not `PostsController@store`
+	  - Used the submit text `Update` not `Create Post`
+	  - For the opening form function
+	    - Used the opening form function `model` not `open` and add a new parameter of `$post` which goes first
+	    - Made the action an array so that it can also include `$post->id`
+	    - So it looks like this
+	    ```
+	    {!! Form::model($post, ['method'=>'PATCH', 'action'=>'PostsController@update']) !!}
+	    ```
+      - Delete part
+	- Replaced the second form also with the same form content as we used in the recent `create.blade.php`
+	- Adaptions
+	  - but used the method `DELETE` not `POST`
+	  - and used the action `PostsController@destroy` not `PostsController@store`
+	  - Used the submit text `Delete` not `Create Post`
+	  - Used the css class text `btn-danger` not `btn-primary`
+	  - And removed the title text, title label and their form group
+	  - For the opening form function
+	    - Made the action an array so that it can also include `$post->id`
+	    - So it looked like this
+	    ```
+	    {!! Form::open(['method'=>'DELETE', 'action'=>['PostsController@destroy', $post->id]]) !!}
+	    ```
+
+#### LC Form Builder Snippets
+##### Intro
+- To make the writing of commonly used LC Form Builder code samples easier we will make them into snippets
+- If you're using the Atom IDE the method of doing this was demonstrated in the Development Tools part of this course
+
+##### Submit button
+- Type of code: `php`
+- Name: `LC Form Builder Sumbit Button`
+- Shortcut: `LCsumbit`
+- Sample:
+```
+  '''
+    <div class="form-group">
+      {!! Form::submit('$1', ['class'=>'btn btn-$2']) !!}
+    </div>
+  '''
+```
+
+##### Text input
+- Type of code: `php`
+- Name: `LC Form Builder Text input`
+- Shortcut: `LCtextinput`
+- Sample:
+```
+  '''
+    <div class="form-group">
+      {!! Form::label('$1', '$2:') !!}
+      {!! Form::text('$1', null, ['class'=>'form-control']) !!}
+    </div>
+  '''
+```
+
+##### Form
+- Type of code: `php`
+- Name: `LC Form Builder Form`
+- Shortcut: `LCform`
+- Sample:
+```
+  '''
+  {!! Form::open(['method'=>'$1', 'action'=>'PostsController@$2']) !!}
+    <div class="form-group">
+      {!! Form::label('$3', '$4:') !!}
+      {!! Form::text('$3', null, ['class'=>'form-control']) !!}
+    </div>
+    <div class="form-group">
+      {!! Form::submit('$5', ['class'=>'btn btn-$6']) !!}
+    </div>
+  {!! Form::close() !!}
+  '''
+```
+
+### <a name="Validation"></a> Validation
+####
+
+##### Intro
+- We will use Laravel's automatic validation errors messages (e.g. "please enter a password with more that 5 characters")
+- This is thought of as setting constraints to the type of requests the user is allowed to make
+
+##### Validation message plus basic request validator
+- Create Post page
+  - "Store" controller
+    - Add the `basic request validator` code below to the store method and make sure it goes above it's sibling functions
+    ```
+      $this->validate($request, [
+        'title'=>'required|max:50',
+      ]);
+    ```
+      - This code we will just use temporarily to demonstrate how it works
+  - View
+    - Orientate yourself to `create.blade.php`
+    - Add the following code after the form
+    ```
+      @if(count($errors) > 0)
+        <div class="alert alert-danger">
+          <ul>
+            @foreach($errors->all() as $error)
+              <li>{{$error}}</li>
+            @endforeach
+          </ul>
+        </div>
+      @endif
+    ```
+
+##### Prebuilt request validator
+- Request
+  - Make new one
+    - Orientate with
+    ```
+      cd C:/laravel-apps/real-world-examples-app
+    ```
+    - Run
+    ```
+      php artisan make:request CreatePostRequest
+    ```
+  - Edit it
+    - Orientate yourself to
+    ```
+      app\Http\Requests\CreatePostRequest.php
+    ```
+    - In the authorize method set the return value to
+      - `true`
+      - This sets it so that everyone can make request with the form (not just privileged members)
+    - In the rules method add the following to the returned array
+      - `'title'=>'required'`
+- Controller Method (Create Posts Page Store Controller Method)
+  - Remove the `basic request validator` code
+  - Using the request
+    - Option 1
+      - Change the first part of the store method's parameter (the `Request` part) to `Requests\CreatePostRequest` so it looks like
       ```
-        $this->validate($request, [
-          'title'=>'required|max:50',
-        ]);
+        public function store(Requests\CreatePostRequest $request)
       ```
-        - This code we will just use temporarily to demonstrate how it works
-    - View
-      - Orientate yourself to `create.blade.php`
-      - Add the following code after the form
-      ```
-        @if(count($errors) > 0)
-          <div class="alert alert-danger">
-            <ul>
-              @foreach($errors->all() as $error)
-                <li>{{$error}}</li>
-              @endforeach
-            </ul>
-          </div>
-        @endif
-      ```
-- Prebuilt request validator
-  - Request
-    - Make new one
-      - Orientate with
-      ```
-        cd C:/laravel-apps/real-world-examples-app
-      ```
-      - Run
-      ```
-        php artisan make:request CreatePostRequest
-      ```
-    - Edit it
-      - Orientate yourself to
-      ```
-        app\Http\Requests\CreatePostRequest.php
-      ```
-      - In the authorize method set the return value to
-        - `true`
-        - This sets it so that everyone can make request with the form (not just privileged members)
-      - In the rules method add the following to the returned array
-        - `'title'=>'required'`
-  - Controller Method (Create Posts Page Store Controller Method)
-    - Remove the `basic request validator` code
-    - Using the request
-      - Option 1
-        - Change the first part of the store method's parameter (the `Request` part) to `Requests\CreatePostRequest` so it looks like
+    - Option 2
+      - Change the first part of the store method's parameter (the `Request` part) to `CreatePostRequest` so it looks like
         ```
-          public function store(Requests\CreatePostRequest $request)
+          public function store(CreatePostRequest $request)
         ```
-      - Option 2
-        - Change the first part of the store method's parameter (the `Request` part) to `CreatePostRequest` so it looks like
-          ```
-            public function store(CreatePostRequest $request)
-          ```
-        - Add the usage function to the top of this file (directly under the "namespace" function)
-        ```
-          use App\Http\Requests\CreatePostRequest;
-        ```
+      - Add the usage function to the top of this file (directly under the "namespace" function)
+      ```
+        use App\Http\Requests\CreatePostRequest;
+      ```
