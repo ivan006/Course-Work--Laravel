@@ -2,20 +2,20 @@
 
 ## <a name="1."></a>Chapter 1. Table of Content
 
-- [1. Table of Content](#1.)
-- [2. Introduction](#2.)
-- [3. Setting up the development tools](#3.)
-- [4. Setting up the Laravel powered app](#4.)
-- [5. Database component](#5.)
-- [6. Routes component](#6.)
-- [7. Introduction to queries](#7.)
-- [8. Basic Queries](#8.)
-- [9. Queries with basic relationships](#9.)
-- [10. Queries with advanced relationships](#10.)
-- [11. Query Testing Environment](#11.)
-- [12. Accessors and mutators queries](#12.)
-- [13. Views component](#13.)
-- [14. Real-World Examples](#14.)
+- [Sec. 1. Table of Content](#1.)
+- [Sec. 2. Introduction](#2.)
+- [Sec. 3.1. Setup  - The development tools](#3.)
+- [Sec. 3.2. Setup - The Laravel powered app](#4.)
+- [Sec. 4.1. Components - database ](#5.)
+- [Sec. 4.2. Component - routes](#6.)
+- [Sec. 4.3.1. Queries - Introduction](#7.)
+- [Sec. 4.3.2. Queries - Basic ones](#8.)
+- [Sec. 4.3.3. Queries  - Ones with basic relationships](#9.)
+- [Sec. 4.3.4. Queries - Ones with advanced relationships](#10.)
+- [Sec. 4.3.5. Queries - Thier testing environment](#11.)
+- [Sec. 4.3.6. Queries - Accessors and mutator one](#12.)
+- [Sec. 4.2. Component - views](#13.)
+- [Sec. 5. Real-World Examples](#14.)
   - [8.1. /5.1. Intro](#8.1)
   - [8.2. /5.2. Forms](#8.2)
   - [8.3. /5.3. Coming soon](##)
@@ -38,7 +38,7 @@
 
 ##<a name="3.d"></a>3. Settup
 
-### <a name="3."></a>Chapter 3.1 Development Tools
+### <a name="3.1."></a>Chapter 3.1 Development Tools
 #### Table Of Content
 
 - [For Windows](#For_Windows)
@@ -111,7 +111,7 @@
 		      - By running this command `vagrant box add laravel/homestead file:///C:/Users/Ivan/Downloads/virtualbox.box`.
 		    - Download  [metadata_url](https://abbasharoon.me/metadata_url) (right click this link and say "save link as"), remove its file extension and move it to your newly formed folder           
 		    `%USERPROFILE%\.vagrant.d\boxes\laravel-VAGRANTSLASH-homestead`.
-		    - In this same location rename the directory named ì0î to the same number as the version of the box that that you installed
+		    - In this same location rename the directory named ‚Äú0‚Äù to the same number as the version of the box that that you installed
 		      - E.g. ```6.1.0```.
 	- Uninstallation
 		- `vagrant box remove laravel/homestead --box-version=6.2.0`
