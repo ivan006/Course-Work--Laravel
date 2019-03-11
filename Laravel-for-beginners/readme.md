@@ -1,8 +1,8 @@
 # Automation with Laravel
 
-## <a name="1."></a>Chapter 1. Table of Content
+## <a name="1."></a>Sec. 1. Table of content
 
-- [Sec. 1. Table of Content](#1.)
+- [Sec. 1. Table of content](#1.)
 - [Sec. 2. Introduction](#2.)
 - [Sec. 3.1. Setup  - The development tools](#3.1.)
 - [Sec. 3.2. Setup - The Laravel powered app](#3.2.)
@@ -12,17 +12,16 @@
 - [Sec. 4.3.2. Queries - Basic ones](#4.3.2.)
 - [Sec. 4.3.3. Queries  - Ones with basic relationships](#4.3.3.)
 - [Sec. 4.3.4. Queries - Ones with advanced relationships](#4.3.4.)
-- [Sec. 4.3.5. Queries - Thier testing environment](#4.3.5.)
+- [Sec. 4.3.5. Queries - Their testing environment](#4.3.5.)
 - [Sec. 4.3.6. Queries - Accessors and mutator one](#4.3.6.)
-- [Sec. 4.4. Component - views](#4.4.)
-- [Sec. 5. Real-World Examples](#14.)
-  - [8.1. /5.1. Intro](#8.1)
-  - [8.2. /5.2. Forms](#8.2)
-  - [8.3. /5.3. Coming soon](##)
-  - [8.4. /5.4. Coming soon](##)
+- [Sec. 4.4. Component - Views](#4.4.)
+- [Sec. 5.1. Real-World Examples - Intro](#5.1.)
+- [Sec. 5.2. Real-World Examples - Forms](#5.2.)
+- [Sec. 5.3. Coming soon](##)
+- [Sec. 5.4. Coming soon](##)
 
 
-## <a name="2."></a>Chapter 2. Introduction
+## <a name="2."></a>Sec. 2. Introduction
 
 ### About
 - This is a place for you to learn the ins and outs of Lary Wary (Laravel).
@@ -38,7 +37,7 @@
 
 ##<a name="3.d"></a>3. Settup
 
-### <a name="3.1."></a>Chapter 3.1 Development Tools
+### <a name="3.1."></a>Sec. 3.1. Setup  - The development tools
 #### Table Of Content
 
 - [For Windows](#For_Windows)
@@ -331,7 +330,7 @@
   - To open MYSQL WorkBench launch it from its launch icon.
 
 
-### <a name="3.2."></a>Chapter 3.2 Laravel Powered App
+### <a name="3.2."></a>Sec. 3.2. Setup - The Laravel powered app
 #### Table Of Content
 
 
@@ -484,7 +483,7 @@
 
 
 
-## <a name="4.1."></a>Chapter 4. Database component
+## <a name="4.1."></a>Sec. 4.1. Components - database
 
 ### Table Of Content
 - [Database](#Database)
@@ -605,7 +604,7 @@
   then solve it by running this in git bash `composer dump-autoload`
 
 
-## <a name="4.2."></a> Chapter 5. Route component
+## <a name="4.2."></a>Sec. 4.2. Component - routes
 
 ### Table Of Content
 - [Routes](#routes)
@@ -689,7 +688,7 @@
 ```
 
 
-## <a name="4.3.1."></a>Chapter 4.3.1. Introduction
+## <a name="4.3.1."></a>Sec. 4.3.1. Queries - Introduction
 
 ### Table Of Content
 
@@ -952,7 +951,7 @@
       });
     ```
 
-## <a name="4.3.2."></a> Chapter 4.3.2. Basic Queries
+## <a name="4.3.2."></a> Sec. 4.3.2. Queries - Basic ones
 
 ### Table Of Content
 
@@ -1216,7 +1215,7 @@
   ```
 
 
-## <a name="4.3.3."></a> Chapter 4.3.3. Basic Relationships
+## <a name="4.3.3."></a> Sec. 4.3.3. Queries  - Ones with basic relationships
 
 ### Table Of Content
 
@@ -1594,7 +1593,7 @@
 
 
 
-## <a name="4.3.4."></a>Chapter 4.3.4. Advanced Relationships
+## <a name="4.3.4."></a>Sec. 4.3.4. Queries - Ones with advanced relationships
 
 ### Table Of Content
 - [Relationship with 2 Levels of Separation](#Relationship-with-2-Levels-of-Separation)
@@ -2028,7 +2027,7 @@
 
 
 
-## <a name="4.3.5."></a>Chapter 4.3.5. Query Testing Environment
+## <a name="4.3.5."></a>Sec. 4.3.5. Queries - Their testing environment
 
 ### Table Of Content
 - [Query Testing Environment](#Query-Testing-Environment)
@@ -2088,7 +2087,7 @@
 
 
 
-## <a name="4.3.6."></a>Chapter 4.3.6. Accessors and Mutators
+## <a name="4.3.6."></a>Sec. 4.3.6. Queries - Accessors and mutator one
 
 ### Table Of Content
 - [Dates](#Dates)
@@ -2195,7 +2194,7 @@
 
 
 
-## <a name="4.4."></a>Chapter 4.4. Views component
+## <a name="4.4."></a>Sec. 4.4. Component - Views
 
 ### Table Of Content
 - [Views](#)
@@ -2367,8 +2366,8 @@
     ```
   - Test URL: `fundamental-mechanisms-app.test/ExampleRoute10/1/2/3`
 
-## <a name="14."></a>Chapter 5. Real world examples
-### <a name="5.1.%20Intro"></a>Chapter 5.1. Intro
+## <a name="5."></a>Sec. 5. Real-World Examples
+### <a name="5.1."></a>Sec. 5.1. Real-World Examples - Intro
 
 #### Make a new laravel powered app
 ##### Install
@@ -2622,7 +2621,7 @@
 
 
 
-### <a name="5.2.%20Forms"></a>Chapter 5.2. Forms
+### <a name="5.2."></a>Sec. 5.2. Real-World Examples - Forms
 
 #### Table Of Content
 - [Basics](#Basics)
