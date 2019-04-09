@@ -12,7 +12,7 @@ keys:
 folders:
     - map: C:\Users\ivan\Documents\multimedia\Blue-Gem-Apps
       to: /home/vagrant/code-b
-    - map: C:\xampp\htdocs\Briland-Edu-Dev\LFB
+    - map: C:\xampp\htdocs\Briland-Edu-Dev\Laravel-for-beginners
       to: /home/vagrant/code
 sites:
       - map: real-world-examples.test

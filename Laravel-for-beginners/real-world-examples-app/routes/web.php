@@ -18,3 +18,8 @@ Route::get('/', function () {
 Route::get('/phpversion', function () {
     echo phpversion();
   });
+
+Route::get('/URLRead/{a}', 'TypeAPost_Controller@MethodRead');
+Route::get('/URLCreate/{a}', 'TypeAPost_Controller@MethodCreate');
+Route::get('URLUpdate/{a}/{b}', 'TypeAPost_Controller@MethodUpdate');
+Route::get('/URLDelete/{a}', 'TypeAPost_Controller@MethodDelete');
