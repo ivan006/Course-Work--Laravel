@@ -14,6 +14,8 @@ folders:
       to: /home/vagrant/code-b
     - map: C:\xampp\htdocs\Briland-Edu-Dev\Laravel-for-beginners
       to: /home/vagrant/code
+    - map: C:\xampp\htdocs
+      to: /home/vagrant/code-c
 sites:
       - map: real-world-examples.test
         to: /home/vagrant/code/real-world-examples-app/public
@@ -22,6 +24,8 @@ sites:
         to: /home/vagrant/code-b/Econet/public
       - map: fundamental-mechanisms-app2.test
         to: /home/vagrant/code/fundamental-mechanisms-app2/public
+      - map: contacts-test-ivan.test
+        to: /home/vagrant/code-c/Sinov8Test/public
 
 databases:
     - homestead

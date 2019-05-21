@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTypeAPostsTable extends Migration
+class TypeBEntitiesMColumnTypeDEntityId extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateTypeAPostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('type_a_posts', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
-            $table->string('data_field_a');
-            $table->string('data_field_b');
-            $table->string('data_field_c');
+        Schema::table('type_b_entities', function (Blueprint $table) {
+            $table->integer('type_d_entity_id');
         });
     }
 
@@ -29,6 +25,8 @@ class CreateTypeAPostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('type_a_posts');
+        Schema::table('type_b_entities', function (Blueprint $table) {
+            $table->dropColumn('type_d_entity_id');
+        });
     }
 }

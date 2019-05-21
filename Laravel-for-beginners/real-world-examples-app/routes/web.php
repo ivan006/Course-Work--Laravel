@@ -19,7 +19,38 @@ Route::get('/phpversion', function () {
     echo phpversion();
   });
 
-Route::get('/URLRead/{a}', 'TypeAPost_Controller@MethodRead');
-Route::get('/URLCreate/{a}', 'TypeAPost_Controller@MethodCreate');
-Route::get('URLUpdate/{a}/{b}', 'TypeAPost_Controller@MethodUpdate');
-Route::get('/URLDelete/{a}', 'TypeAPost_Controller@MethodDelete');
+Route::get('/a/read/{a}', 'TypeAEntity_Controller@MethodRead');
+Route::get('/a/create/{a}', 'TypeAEntity_Controller@MethodCreate');
+Route::get('/a/update', 'TypeAEntity_Controller@MethodUpdate');
+Route::get('/a/delete', 'TypeAEntity_Controller@MethodDelete');
+Route::get('/a/Softdelete/{a}', 'TypeAEntity_Controller@MethodSoftDelete');
+
+Route::get('/b/create/{a}/{b}', 'TypeBEntity_Controller@create');
+Route::get('/b/read/{a}', 'TypeBEntity_Controller@show');
+Route::get('/b/update/{a}/{b}', 'TypeBEntity_Controller@update');
+Route::get('/b/delete/{a}', 'TypeBEntity_Controller@destroy');
+
+
+Route::get('/b/read/a/create/{a}', 'TypeBEntity_Controller@showACreate');
+Route::get('/b/read/a/read/{a}', 'TypeBEntity_Controller@showAShow');
+Route::get('/b/read/a/update/{a}/{b}', 'TypeBEntity_Controller@showAUpdate');
+Route::get('/b/read/a/delete/{a}', 'TypeBEntity_Controller@showADestroy');
+
+
+
+Route::get('/c/create/{a}', 'TypeCEntity_Controller@create');
+Route::get('/c/delete/{a}', 'TypeCEntity_Controller@destroy');
+
+Route::get('/b/read/CLink/create/{a}/{b}/{c}', 'TypeBEntity_Controller@showCLinkCreate');
+Route::get('/b/read/CLink/read/{a}', 'TypeBEntity_Controller@showCLinkShow');
+Route::get('/b/read/CLink/delete/{a}', 'TypeBEntity_Controller@showCLinkDestroy');
+
+
+Route::get('/b/read/c/read/{a}', 'TypeBEntity_Controller@showCShow');
+Route::get('/b/read/c/update/{a}/{b}/{c}', 'TypeBEntity_Controller@showCUpdate');
+Route::get('/b/read/c/delete/{a}/{b}', 'TypeBEntity_Controller@showCDestroy');
+
+Route::get('/c/read/b/read/{a}', 'TypeCEntity_Controller@showBShow');
+
+Route::get('/d/create/{a}', 'TypeDEntity_Controller@create');
+Route::get('/d/delete/{a}', 'TypeDEntity_Controller@destroy');
