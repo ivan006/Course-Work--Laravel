@@ -18,7 +18,7 @@ folders:
       to: /home/vagrant/code-c
 sites:
       - map: real-world-examples.test
-        to: /home/vagrant/code/real-world-examples-app
+        to: /home/vagrant/code/real-world-examples-app/public
         php: "7.1"
       - map: econet.test
         to: /home/vagrant/code-b/Econet

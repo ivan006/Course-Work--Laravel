@@ -1,99 +1,107 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+<?php
+require_once "../app/libraries/Parsedown.php";
+$parsedown = new Parsedown();
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
+$subsiteName = "Hex Motion";
+?>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
+  </head>
+  <body style="padding: 20px; background-color: WhiteSmoke;" >
+    <div class="container s-heightMinFullPage" style="background-color: white;">
 
-            .full-height {
-                height: 100vh;
-            }
+      <?php ob_start(); ?>
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
 
-            .position-ref {
-                position: relative;
-            }
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
 
-            .content {
-                text-align: center;
-            }
+      /*
+      |--------------------------------------------------------------------------
+      | Web Routes
+      |--------------------------------------------------------------------------
+      |
+      | Here is where you can register web routes for your application. These
+      | routes are loaded by the RouteServiceProvider within a group which
+      | contains the "web" middleware group. Now create something great!
+      |
+      */
 
-            .title {
-                font-size: 84px;
-            }
+      Route::get('/', function () {
+          return view('welcome');
+      });
 
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
+      Route::get('/phpversion', function () {
+          echo phpversion();
+        });
 
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
+      Route::get('/a/read/{a}', 'TypeAEntity_Controller@MethodRead');
+      Route::get('/a/create/{a}', 'TypeAEntity_Controller@MethodCreate');
+      Route::get('/a/update', 'TypeAEntity_Controller@MethodUpdate');
+      Route::get('/a/delete', 'TypeAEntity_Controller@MethodDelete');
+      Route::get('/a/Softdelete/{a}', 'TypeAEntity_Controller@MethodSoftDelete');
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
+      Route::get('/b/create/{a}/{b}', 'TypeBEntity_Controller@create');
+      Route::get('/b/read/{a}', 'TypeBEntity_Controller@show');
+      Route::get('/b/update/{a}/{b}', 'TypeBEntity_Controller@update');
+      Route::get('/b/delete/{a}', 'TypeBEntity_Controller@destroy');
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
-        </div>
-    </body>
+      Route::get('/b/read/a/create/{a}', 'TypeBEntity_Controller@showACreate');
+      Route::get('/b/read/a/read/{a}', 'TypeBEntity_Controller@showAShow');
+      Route::get('/b/read/a/update/{a}/{b}', 'TypeBEntity_Controller@showAUpdate');
+      Route::get('/b/read/a/delete/{a}', 'TypeBEntity_Controller@showADestroy');
+
+
+
+      Route::get('/c/create/{a}', 'TypeCEntity_Controller@create');
+      Route::get('/c/delete/{a}', 'TypeCEntity_Controller@destroy');
+
+      Route::get('/b/read/CLink/create/{a}/{b}/{c}', 'TypeBEntity_Controller@showCLinkCreate');
+      Route::get('/b/read/CLink/read/{a}', 'TypeBEntity_Controller@showCLinkShow');
+      Route::get('/b/read/CLink/delete/{a}', 'TypeBEntity_Controller@showCLinkDestroy');
+
+
+      Route::get('/b/read/c/read/{a}', 'TypeBEntity_Controller@showCShow');
+      Route::get('/b/read/c/update/{a}/{b}/{c}', 'TypeBEntity_Controller@showCUpdate');
+      Route::get('/b/read/c/delete/{a}/{b}', 'TypeBEntity_Controller@showCDestroy');
+
+      Route::get('/c/read/b/read/{a}', 'TypeCEntity_Controller@showBShow');
+
+      Route::get('/d/create/{a}', 'TypeDEntity_Controller@create');
+      Route::get('/d/delete/{a}', 'TypeDEntity_Controller@destroy');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <?php
+      $markdownInstance = ob_get_contents();
+      ob_end_clean();
+      echo $parsedown->text($markdownInstance);
+      ?>
+
+      <!-- <div id="hellomarkdown">
+      </div> -->
+
+</div>
+
+<!-- <script src="../app/libraries/showdown-1/showdown.js"></script>
+<script src="../app/libraries/showdown-1/showdown-customisation.js"></script> -->
+
+</body>
 </html>
