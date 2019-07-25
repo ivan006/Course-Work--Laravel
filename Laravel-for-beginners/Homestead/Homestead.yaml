@@ -21,7 +21,7 @@ sites:
         to: /home/vagrant/code/real-world-examples-app/public
         php: "7.1"
       - map: econet.test
-        to: /home/vagrant/code-b/Econet
+        to: /home/vagrant/code-b/public
       - map: fundamental-mechanisms-app2.test
         to: /home/vagrant/code/fundamental-mechanisms-app2/public
       - map: contacts-test-ivan.test
