@@ -10,30 +10,34 @@ keys:
     - ~/.ssh/id_rsa
 
 folders:
-    - map: C:\Users\ivan\Documents\multimedia\Personal-Project--Flex-Report-DbFile-ProdNo
-      to: /home/vagrant/code-b
-    - map: C:\xampp\htdocs\Briland-Edu-Dev\Laravel-for-beginners
-      to: /home/vagrant/code
-    - map: C:\Users\ivan\Documents\multimedia\rich-and-smart
-      to: /home/vagrant/code-d
-    - map: C:\Users\ivan\Documents\multimedia\Course-work--React
-      to: /home/vagrant/code-a
-    - map: C:\xampp\htdocs
-      to: /home/vagrant/code-c
+  - map: C:\xampp\htdocs\Briland-Edu-Dev\Laravel-for-beginners
+    to: /home/vagrant/laravel
+  - map: C:\Users\ivan\Documents\multimedia\Course-work--React
+    to: /home/vagrant/react
+  - map: C:\Users\ivan\Documents\multimedia\Personal-Project--Flex-Report-DbFile-ProdNo
+    to: /home/vagrant/flex1a
+  - map: C:\Users\ivan\Documents\multimedia\Floral-Builder-Production
+    to: /home/vagrant/flex1b
+  - map: C:\Users\ivan\Documents\multimedia\rich-and-smart
+    to: /home/vagrant/flex2a
+  - map: C:\Users\ivan\Documents\multimedia\Flex-Commerce-SQL-DB-Production
+    to: /home/vagrant/flex2b
+
+
 sites:
-      - map: real-world-examples.test
-        to: /home/vagrant/code/real-world-examples-app/public
-        php: "7.1"
-      - map: personal-project--flex-report-dbfile-prodno.test
-        to: /home/vagrant/code-b/public
-      - map: fundamental-mechanisms-app2.test
-        to: /home/vagrant/code/fundamental-mechanisms-app2/public
-      - map: contacts-test-ivan.test
-        to: /home/vagrant/code-c/Sinov8Test/public
-      - map: rich-and-smart.test
-        to: /home/vagrant/code-d/public
-      - map: react.test
-        to: /home/vagrant/code-a/public
+  - map: real-world-examples.test
+    to: /home/vagrant/laravel/real-world-examples-app/public
+    php: "7.1"
+  - map: react.test
+    to: /home/vagrant/react/public
+  - map: flex1a.test
+    to: /home/vagrant/flex1a/public
+  - map: flex1b.test
+    to: /home/vagrant/flex1b/public
+  - map: flex2a.test
+    to: /home/vagrant/flex2a/public
+  - map: flex2b.test
+    to: /home/vagrant/flex2b/public
 
 databases:
     - homestead
