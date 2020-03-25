@@ -10,22 +10,30 @@ keys:
     - ~/.ssh/id_rsa
 
 folders:
-    - map: C:\Users\ivan\Documents\multimedia\Blue-Gem-Apps
+    - map: C:\Users\ivan\Documents\multimedia\Personal-Project--Flex-Report-DbFile-ProdNo
       to: /home/vagrant/code-b
     - map: C:\xampp\htdocs\Briland-Edu-Dev\Laravel-for-beginners
       to: /home/vagrant/code
+    - map: C:\Users\ivan\Documents\multimedia\rich-and-smart
+      to: /home/vagrant/code-d
+    - map: C:\Users\ivan\Documents\multimedia\Course-work--React
+      to: /home/vagrant/code-a
     - map: C:\xampp\htdocs
       to: /home/vagrant/code-c
 sites:
       - map: real-world-examples.test
         to: /home/vagrant/code/real-world-examples-app/public
         php: "7.1"
-      - map: econet.test
+      - map: personal-project--flex-report-dbfile-prodno.test
         to: /home/vagrant/code-b/public
       - map: fundamental-mechanisms-app2.test
         to: /home/vagrant/code/fundamental-mechanisms-app2/public
       - map: contacts-test-ivan.test
         to: /home/vagrant/code-c/Sinov8Test/public
+      - map: rich-and-smart.test
+        to: /home/vagrant/code-d/public
+      - map: react.test
+        to: /home/vagrant/code-a/public
 
 databases:
     - homestead
